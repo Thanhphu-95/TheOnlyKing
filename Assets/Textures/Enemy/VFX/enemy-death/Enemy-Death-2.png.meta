@@ -1,0 +1,404 @@
+fileFormatVersion: 2
+guid: eb4fb91444d75254da68923a93cf9e37
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4650436117764477745
+    second: Enemy-Death-1-sheet 1_0
+  - first:
+      213: 9064067896455126052
+    second: Enemy-Death-1-sheet 1_1
+  - first:
+      213: -3760745327220348885
+    second: Enemy-Death-1-sheet 1_2
+  - first:
+      213: 3508102942178368161
+    second: Enemy-Death-1-sheet 1_3
+  - first:
+      213: -6762733339973897276
+    second: Enemy-Death-1-sheet 1_4
+  - first:
+      213: 3498048550929299953
+    second: Enemy-Death-1-sheet 1_5
+  - first:
+      213: 8517409508910984032
+    second: Enemy-Death-1-sheet 1_6
+  - first:
+      213: -2451965449951564512
+    second: Enemy-Death-1-sheet 1_7
+  - first:
+      213: -3611135852279614878
+    second: Enemy-Death-1-sheet 1_8
+  - first:
+      213: 7456111269130867960
+    second: Enemy-Death-1-sheet 1_9
+  - first:
+      213: -7324489053757907472
+    second: Enemy-Death-1-sheet 1_10
+  - first:
+      213: 2292235490714322174
+    second: Enemy-Death-1-sheet 1_11
+  - first:
+      213: 408696749626436252
+    second: Enemy-Death-1-sheet 1_12
+  - first:
+      213: 4437415151890755410
+    second: Enemy-Death-1-sheet 1_13
+  - first:
+      213: -4885705250896620884
+    second: Enemy-Death-1-sheet 1_14
+  - first:
+      213: 4704132670285089136
+    second: Enemy-Death-1-sheet 1_15
+  - first:
+      213: -4324113710673700753
+    second: Enemy-Death-1-sheet 1_16
+  - first:
+      213: 1243251382535168259
+    second: Enemy-Death-1-sheet 1_17
+  - first:
+      213: -8773683756566544014
+    second: Enemy-Death-1-sheet 1_18
+  - first:
+      213: -6478198821209381452
+    second: Enemy-Death-1-sheet 1_19
+  - first:
+      213: 8020402799037960643
+    second: Enemy-Death-1-sheet 1_20
+  - first:
+      213: -8029351388788253427
+    second: Enemy-Death-1-sheet 1_21
+  - first:
+      213: 7232985806567811383
+    second: Enemy-Death-1-sheet 1_22
+  - first:
+      213: -4145701515020509648
+    second: Enemy-Death-1-sheet 1_23
+  - first:
+      213: -3842569408638590046
+    second: Enemy-Death-1-sheet 1_24
+  - first:
+      213: 1543281644846374489
+    second: Enemy-Death-1-sheet 1_25
+  - first:
+      213: 5447658576873121654
+    second: Enemy-Death-1-sheet 1_26
+  - first:
+      213: 8923856413140126860
+    second: Enemy-Death-1-sheet 1_27
+  - first:
+      213: -2750871721701027414
+    second: Enemy-Death-1-sheet 1_28
+  - first:
+      213: 5302407132299686304
+    second: Enemy-Death-1-sheet 1_29
+  - first:
+      213: 6366439220189771308
+    second: Enemy-Death-1-sheet 1_30
+  - first:
+      213: -8728790930887568821
+    second: Enemy-Death-1-sheet 1_31
+  - first:
+      213: 2184335334089631494
+    second: Enemy-Death-1-sheet 1_32
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 31
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Enemy-Death-1-sheet 1_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 17
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcc600e6df4567fb0800000000000000
+      internalID: -4650436117764477745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Death-1-sheet 1_1
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 0
+        width: 49
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42cda347ab90acd70800000000000000
+      internalID: 9064067896455126052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Death-1-sheet 1_2
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 0
+        width: 60
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b282258dc062fcbc0800000000000000
+      internalID: -3760745327220348885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Death-1-sheet 1_3
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 0
+        width: 69
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aa5b080a094fa030800000000000000
+      internalID: 3508102942178368161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Death-1-sheet 1_4
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 0
+        width: 72
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c33a289bd1f522a0800000000000000
+      internalID: -6762733339973897276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Death-1-sheet 1_5
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 0
+        width: 77
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f9f535af909b8030800000000000000
+      internalID: 3498048550929299953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Death-2_0
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 0
+        width: 79
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2173d63ca91029a46bdf60ddd6e3a95a
+      internalID: 1577264163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: da85e1173f6e8154cb056bdb490d9216
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Enemy-Death-1-sheet 1_0: -4650436117764477745
+      Enemy-Death-1-sheet 1_1: 9064067896455126052
+      Enemy-Death-1-sheet 1_10: -7324489053757907472
+      Enemy-Death-1-sheet 1_11: 2292235490714322174
+      Enemy-Death-1-sheet 1_12: 408696749626436252
+      Enemy-Death-1-sheet 1_13: 4437415151890755410
+      Enemy-Death-1-sheet 1_14: -4885705250896620884
+      Enemy-Death-1-sheet 1_15: 4704132670285089136
+      Enemy-Death-1-sheet 1_16: -4324113710673700753
+      Enemy-Death-1-sheet 1_17: 1243251382535168259
+      Enemy-Death-1-sheet 1_18: -8773683756566544014
+      Enemy-Death-1-sheet 1_19: -6478198821209381452
+      Enemy-Death-1-sheet 1_2: -3760745327220348885
+      Enemy-Death-1-sheet 1_20: 8020402799037960643
+      Enemy-Death-1-sheet 1_21: -8029351388788253427
+      Enemy-Death-1-sheet 1_22: 7232985806567811383
+      Enemy-Death-1-sheet 1_23: -4145701515020509648
+      Enemy-Death-1-sheet 1_24: -3842569408638590046
+      Enemy-Death-1-sheet 1_25: 1543281644846374489
+      Enemy-Death-1-sheet 1_26: 5447658576873121654
+      Enemy-Death-1-sheet 1_27: 8923856413140126860
+      Enemy-Death-1-sheet 1_28: -2750871721701027414
+      Enemy-Death-1-sheet 1_29: 5302407132299686304
+      Enemy-Death-1-sheet 1_3: 3508102942178368161
+      Enemy-Death-1-sheet 1_30: 6366439220189771308
+      Enemy-Death-1-sheet 1_31: -8728790930887568821
+      Enemy-Death-1-sheet 1_32: 2184335334089631494
+      Enemy-Death-1-sheet 1_4: -6762733339973897276
+      Enemy-Death-1-sheet 1_5: 3498048550929299953
+      Enemy-Death-1-sheet 1_6: 8517409508910984032
+      Enemy-Death-1-sheet 1_7: -2451965449951564512
+      Enemy-Death-1-sheet 1_8: -3611135852279614878
+      Enemy-Death-1-sheet 1_9: 7456111269130867960
+      Enemy-Death-2_0: 1577264163
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
