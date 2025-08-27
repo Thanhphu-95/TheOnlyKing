@@ -40,7 +40,7 @@ public class PlayController : MonoBehaviour
         Jump();
         Animation();
         Attack();
-        TakeDamege();
+        //TakeDamege();
     }
 
     private void Run()
@@ -103,14 +103,14 @@ public class PlayController : MonoBehaviour
 
 
 
-    private void TakeDamege()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            currentHealth = currentHealth - 20;
-            health.SetHealth(currentHealth);
-        }
-    }    
+    //private void TakeDamege()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        currentHealth = currentHealth - 20;
+    //        health.SetHealth(currentHealth);
+    //    }
+    //}    
 }
 
 //-2.607703e-06  -1.190303
