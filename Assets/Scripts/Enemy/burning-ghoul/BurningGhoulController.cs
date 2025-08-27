@@ -20,11 +20,11 @@ public class BurningGhoulController : MonoBehaviour
     [SerializeField] private GameObject burnEff;
     private bool attack = false;
     private bool exploded = false;
-    private bool countingDown = false;
 
 
 
-    private int walkSpeedParam = Animator.StringToHash("walke");
+
+   
 
 
     void Start()
@@ -88,7 +88,7 @@ public class BurningGhoulController : MonoBehaviour
             }
             
         }
-        burningAnimator.SetFloat(walkSpeedParam, Mathf.Abs(burningRb.linearVelocityX));
+       
     }
 
 
