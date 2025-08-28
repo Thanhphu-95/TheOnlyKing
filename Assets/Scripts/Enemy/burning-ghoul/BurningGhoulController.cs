@@ -4,6 +4,7 @@ using UnityEngine;
 public class BurningGhoulController : MonoBehaviour
 {
     [SerializeField] private Transform[] patroPoints;
+
     private int currentPoint;
     private float waitCounter;
 
@@ -21,6 +22,8 @@ public class BurningGhoulController : MonoBehaviour
     private bool attack = false;
     private bool exploded = false;
 
+    private PlayerController playerController;
+
 
 
 
@@ -35,25 +38,26 @@ public class BurningGhoulController : MonoBehaviour
         {
             pPoint.SetParent(null);
         }
-
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (attack == true)
         {
             Debug.Log("chuyen trang thai");
+            Debug.Log("kich hoat 5s");
+            StartCoroutine(ExplodeAfterDelay(5f));
             MoveAttack();
         }
         else
         {
             Patro();
         }
-    
+
+        if (playerController != null)
+        {
+            Debug.Log($"{playerController.IsDash}");
+        }
     }
-
-
     private void Patro()
     {
         if (patroPoints.Length > 0)
@@ -86,9 +90,7 @@ public class BurningGhoulController : MonoBehaviour
                     }
                 }
             }
-            
         }
-       
     }
 
 
@@ -96,20 +98,9 @@ public class BurningGhoulController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            attack = true;
-           
-
-
-        //    if (!countingDown)
-        //    {
-        //        exploded = true; 
-        //        Debug.Log($"Attack: {attack}");
-        //    StartCoroutine(ExplodeAfterDelay1(5f));
-
-      
+            attack = true;  
         }
     }
-
 
     private void MoveAttack()
     {
@@ -130,17 +121,18 @@ public class BurningGhoulController : MonoBehaviour
 
         if (targetPlayer != null && !exploded)
         {
-            if (Mathf.Abs(targetPlayer.transform.position.x - transform.position.x) <= 5)
+            if (Mathf.Abs(targetPlayer.transform.position.x - transform.position.x) <= 1 && Mathf.Abs(targetPlayer.transform.position.y - transform.position.y) <= 1)
             {
                 exploded = true;
-                Debug.Log("1s");
-                StartCoroutine(ExplodeAfterDelay(1f));
-                
+                StartCoroutine(ExplodeAfterDelay(0.3f));
             } 
         }
-        
     }
 
+    private void PlayerDash()
+    {
+        
+    }    
     private IEnumerator ExplodeAfterDelay(float delay)
     {   
        
@@ -153,3 +145,5 @@ public class BurningGhoulController : MonoBehaviour
         Destroy(this.gameObject);
     }
 }
+
+//Dash vẫn chưa xuyên enemy khi lướt, chưa đổi hình khi lướt

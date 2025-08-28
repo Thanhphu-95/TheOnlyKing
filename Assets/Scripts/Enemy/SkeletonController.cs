@@ -167,7 +167,7 @@ public class SkeletonController : MonoBehaviour
     }
 
 
-    private void Move()
+    private void Move()//hàm di chuyển khi phát hiện player
     {
         Vector2 targerPosition = new Vector2(targetPlayer.transform.position.x, transform.position.y);
         transform.position = Vector2.MoveTowards(transform.position, targerPosition, moveSpeed * Time.deltaTime);
@@ -182,7 +182,7 @@ public class SkeletonController : MonoBehaviour
             transform.localScale = Vector3.one;
         }
 
-    } //hàm di chuyển khi phát hiện player
+    } 
 
     private void Attack() //hàm tấn công player
     {
