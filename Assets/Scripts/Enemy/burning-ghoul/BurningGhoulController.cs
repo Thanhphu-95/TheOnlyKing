@@ -43,8 +43,6 @@ public class BurningGhoulController : MonoBehaviour
     {
         if (attack == true)
         {
-            Debug.Log("chuyen trang thai");
-            Debug.Log("kich hoat 5s");
             StartCoroutine(ExplodeAfterDelay(5f));
             MoveAttack();
         }
@@ -140,7 +138,7 @@ public class BurningGhoulController : MonoBehaviour
         if (burnEff != null)
         {
             GameObject eff = Instantiate(burnEff, transform.position, transform.rotation);
-            Destroy(eff, 2f);
+            Destroy(eff, 1f);
         }
         Destroy(this.gameObject);
     }
