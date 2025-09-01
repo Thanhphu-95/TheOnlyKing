@@ -23,11 +23,7 @@ public class BurningGhoulController : MonoBehaviour
     private bool exploded = false;
 
     private PlayerController playerController;
-
-
-
-
-   
+    [SerializeField] private float explosionRadius;//pham vi no
 
 
     void Start()
@@ -141,6 +137,23 @@ public class BurningGhoulController : MonoBehaviour
             Destroy(eff, 1f);
         }
         Destroy(this.gameObject);
+
+        //if (targetPlayer != null)
+        //{
+
+        //}
+
+        float distance = Vector2.Distance(transform.position, targetPlayer.transform.position);
+
+        if (distance <= explosionRadius)
+        {
+            PlayerHealthController damagePlayer = targetPlayer.GetComponent<PlayerHealthController>();
+            if (damagePlayer != null)
+            {
+                Debug.Log("gay dame");
+                damagePlayer.DamagePlayer(damageAmount);
+            }
+        }
     }
 }
 

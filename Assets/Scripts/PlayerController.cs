@@ -17,9 +17,6 @@ public class PlayerController : MonoBehaviour
     private bool isDoubleJump;
     [SerializeField] private Animator animationHero;
 
-
-    public int maxHealth = 200;
-    public int currentHealth;
     [SerializeField] private HealthEnemi health;
 
     [Header("Attack 02")]
@@ -60,9 +57,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = maxHealth;
-        health.SetMaxHealth(maxHealth);
-
         //playerLayer = gameObject.layer;
         //enemyLayer = LayerMask.NameToLayer("Enemy");
     }
