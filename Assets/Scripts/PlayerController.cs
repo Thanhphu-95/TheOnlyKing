@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce;// tôc độ nhảy
     private bool isOnGround;
     private bool isDoubleJump;
+    private int damage;
     [SerializeField] private Animator animationPlayer;
 
     [SerializeField] private AttackHitbox attackHitBox;
@@ -311,6 +312,12 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         playerRb.linearVelocity = new Vector2(0f, playerRb.linearVelocityY);
+    }
+
+
+    public void IncreaseDamage(int dmg)
+    {
+        damage = damage + dmg;
     }
 
     private void AnimationPlayer()

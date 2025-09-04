@@ -17,7 +17,7 @@ public class BurningGhoulController : MonoBehaviour
 
    
     [SerializeField] private GameObject targetPlayer;
-    [SerializeField] private int damageAmount;
+    [SerializeField] private int damageAmount ;
     [SerializeField] private GameObject burnEff;
     private bool attack = false;
     private bool exploded = false;
