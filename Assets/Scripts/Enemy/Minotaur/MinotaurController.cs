@@ -1,11 +1,12 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MinotaurController : MonoBehaviour
 {
 
     [SerializeField] private Transform rayCast;
-    //[SerializeField] private LayerMask rayCastMask;
-    //[SerializeField] private float rayCastLenght;
+    [SerializeField] private float detectDistance = 10f;
+    [SerializeField] private LayerMask playerLayer; // Layer của Player
+
     [SerializeField] public float attackDistance;
     [SerializeField] public float moveSpeed;
     [SerializeField] public float timer;
@@ -34,21 +35,23 @@ public class MinotaurController : MonoBehaviour
 
     void Update()
     {
-        //if (inRange) 
-        //{
-        //    Debug.Log("01");
-        //    hit = Physics2D.Raycast(rayCast.position, Vector2.left, rayCastLenght, rayCastMask);
-        //    RaycastDebugger();
-        //}
+        // Vị trí bắt đầu ray
+        Vector2 origin = transform.position;
 
-        //if (hit.collider != null)
-        //{         
-        //    EnemyLogic();
-        //}
-        //else if (hit.collider == null)
-        //{
-        //    inRange = false;
-        //}
+        // Hướng ray 
+        Vector2 direction = transform.localScale.x < 0 ? Vector2.right : Vector2.left;
+
+        // Bắn ray
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, detectDistance, playerLayer);
+
+        if (hit.collider != null)
+        {
+            target = hit.collider.gameObject;
+            inRange = true;
+        }
+
+        // Vẽ ray trong Scene để debug
+        Debug.DrawRay(origin, direction * detectDistance, Color.red);
 
         if (inRange == false)
         {
@@ -59,17 +62,23 @@ public class MinotaurController : MonoBehaviour
         {
             EnemyLogic();
         }
+
+        //if (cooling)
+        //{
+        //    Cooldown();
+        //}
+
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
             
-            target = collision.gameObject;
-            inRange = true;
-        }
-    }
+    //        target = collision.gameObject;
+    //        inRange = true;
+    //    }
+    //}
 
     private void EnemyLogic()
     {
@@ -84,10 +93,10 @@ public class MinotaurController : MonoBehaviour
             Attack();
         }
 
-        if (cooling)
-        {
-            animator.SetBool("Attack", false);
-        }
+        //if (cooling)
+        //{
+        //    animator.SetBool("Attack", false);
+        //}
 
     }
 
@@ -112,6 +121,7 @@ public class MinotaurController : MonoBehaviour
     {
         timer = intTimer;
         attackMode = true;
+        cooling = true;
 
         animator.SetBool("Walk", false);
         animator.SetBool("Attack", true);
@@ -125,6 +135,8 @@ public class MinotaurController : MonoBehaviour
         animator.SetBool("Attack", false);
         MinoRb.bodyType = RigidbodyType2D.Dynamic;
     }
+
+
 
     //private void RaycastDebugger()
     //{

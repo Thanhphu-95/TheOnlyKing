@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 public class SkeletonController : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class SkeletonController : MonoBehaviour
     [SerializeField] private Rigidbody2D skeletonRb; //tham chiếu đên skeleton
     [SerializeField] private Animator animator;
 
-
+    private int detectDistance = 5;
     [SerializeField] public LayerMask raycastMask;
     [SerializeField] public float attackDistance; // khoản cách tối thiểu để tấng công
     [SerializeField] private float timerCooldowAttack; // thời gian giữa các lần tấng công
@@ -45,13 +46,7 @@ public class SkeletonController : MonoBehaviour
         attackCounter = timerCooldowAttack;
 
 
-        foreach (Transform pPoint in patrolPoint)
-        {
-            pPoint.SetParent(null);
-        }
-
-       
-       
+        
     }
 
 
@@ -59,9 +54,22 @@ public class SkeletonController : MonoBehaviour
     void Update()
     {
         attackCounter -= Time.deltaTime;
-        SkeletonLogic();
+        SkeletonLogic();foreach (Transform pPoint in patrolPoint)
+        {
+            pPoint.SetParent(null);
+        }
+        Vector2 origin = transform.position;
+        Vector2 direction = transform.localScale.x < 0 ? Vector2.right : Vector2.left;
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, detectDistance, raycastMask);
+        if (hit.collider != null)
+        {
+            targetPlayer = hit.collider.gameObject;
+            inRange = true;
+        }
+        Debug.DrawRay(origin, direction * detectDistance, Color.red);
     }
 
+    
 
 
     private void Patrol()
@@ -100,35 +108,6 @@ public class SkeletonController : MonoBehaviour
 
         }
     }
-
-
-
-
-    private void OnTriggerEnter2D(Collider2D collision) // kiểm tra player đã vào khu vục phát hiện
-    {
-        if (collision.CompareTag("Player"))
-        {
-            targetPlayer = collision.gameObject;
-            inRange = true;
-            Debug.Log($"{inRange}");
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)// kiểm tra player thoát khỏi khu vục phát hiện
-    {
-        {
-            if (collision.CompareTag("Player"))
-            {
-                targetPlayer = null;
-                inRange = false;
-                Debug.Log($"{inRange}");
-            }
-        }
-
-       
-
-    }
-
     void SkeletonLogic() //hành vi của Skeleton
     {
         if (targetPlayer == null)

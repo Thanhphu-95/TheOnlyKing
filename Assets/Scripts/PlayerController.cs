@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Rendering;
 
 
@@ -15,15 +16,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce;// tôc độ nhảy
     private bool isOnGround;
     private bool isDoubleJump;
-    [SerializeField] private Animator animationHero;
+    [SerializeField] private Animator animationPlayer;
 
-    [SerializeField] private HealthEnemi health;
+    [SerializeField] private AttackHitbox attackHitBox;
 
     [Header("Attack 02")]
     [SerializeField] private float holdAttack02;
     private float holdTimeAttack02;
     private bool isHolding;
     private bool canMove = true;
+
+
+    [Header("Biến hình")]
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject priest;
+
+   
 
 
     [Header("Dash")]
@@ -45,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    [Header("Animation")]
+    [Header("Animation Player")]
     private int speedParam = Animator.StringToHash("speed");
     private int isOnGroundParam = Animator.StringToHash("isOnGround");
     private int isDoubleJumpParam = Animator.StringToHash("DoubleJump");
@@ -53,6 +61,20 @@ public class PlayerController : MonoBehaviour
     private int Attack02Param = Animator.StringToHash("Attack 2");
     private int DashParam = Animator.StringToHash("Dash");
     private int HoldParam = Animator.StringToHash("Hold");
+
+    [Header("contro Priest")]
+    [SerializeField] private Animator animaPriest;
+
+    [Header("Animation Priest")]
+    private int speebParamPr = Animator.StringToHash("speedpr");
+    private int isDoubleJumpParamPr = Animator.StringToHash("DoubleJumpPr");
+    private int isOnGroundParamPr = Animator.StringToHash("isOnGroundPr");  
+    private int AttackParamPr = Animator.StringToHash("attack01Pr");
+    private int Attack02ParamPr = Animator.StringToHash("attack02Pr");
+    private int Attack03ParamPr = Animator.StringToHash("attack03Pr");
+    
+
+
 
 
     private void Start()
@@ -68,11 +90,13 @@ public class PlayerController : MonoBehaviour
         Jump();
         }
         
-        Animation();
+        AnimationPlayer();
+        AnimaPriest();
         Attack01();
         Attack02();
+        Attack03();
         Dash();
-        //TakeDamege();
+        Priest();
     }
 
     private void Run()
@@ -102,58 +126,127 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                animationHero.SetTrigger(isDoubleJumpParam);
+                if (player.activeSelf)
+                {
+                    animationPlayer.SetTrigger(isDoubleJumpParam);
+                }
+                else if (priest.activeSelf)
+                {
+                    Debug.Log("Jump");
+                    animaPriest.SetTrigger(isDoubleJumpParamPr);
+                }
+
                 isDoubleJump = false;
             }
             playerRb.linearVelocity = new Vector2(playerRb.linearVelocityX, jumpForce);
         }
+        
     }
 
     private void Attack01()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            animationHero.SetTrigger(AttackParam);
+            if (player.activeSelf)
+            {
+                animationPlayer.SetTrigger(AttackParam);
+                attackHitBox.SetDamage(10);
+            }
+            else if (priest.activeSelf)
+            {
+                animaPriest.SetTrigger(AttackParamPr);
+                attackHitBox.SetDamage(15);
+            }
+          
         }
+
     }
 
     private void Attack02()
     {
-        if (Input.GetButtonDown("Fire2") && isOnGround)
+        if (player.activeSelf)
         {
-            playerRb.linearVelocity = new Vector2(0, playerRb.linearVelocityY);
-            holdTimeAttack02 = 0f;
-            isHolding = true;
-            GetComponent<PlayerController>().canMove = false;
-            Debug.Log("Bắt đầu giữ Fire2 -> HoldParam ON");
-            animationHero.SetBool(HoldParam, isHolding);
-        }    
+             if (Input.GetButtonDown("Fire2") && isOnGround)
+             {
+                    playerRb.linearVelocity = new Vector2(0, playerRb.linearVelocityY);
+                    holdTimeAttack02 = 0f;
+                    isHolding = true;
+                    GetComponent<PlayerController>().canMove = false;
+                    Debug.Log("Bắt đầu giữ Fire2 -> HoldParam ON");
+                    animationPlayer.SetBool(HoldParam, isHolding);
+             }    
 
 
-        if(isHolding && Input.GetButton("Fire2"))
-        {
+            if(isHolding && Input.GetButton("Fire2"))
+            {
             holdTimeAttack02 += Time.deltaTime; 
+            }
+
+            if (isHolding && Input.GetButtonUp("Fire2"))
+            {
+                if (holdTimeAttack02 >= holdAttack02)
+                {
+                Debug.Log("Giữ đủ thời gian -> thực hiện Attack logic!"); 
+                animationPlayer.SetBool(HoldParam, false);
+                animationPlayer.SetTrigger(Attack02Param);
+                    StartCoroutine(MoveForward(10f, 0.3f));
+                }
+                else
+                {
+                Debug.Log("ko đủ thời gian -> hủy attack");
+                animationPlayer.SetBool(HoldParam, false);
+
+                }
+            
+                isHolding = false;
+                GetComponent<PlayerController>().canMove = true;
+            }
+        }
+        else if (priest.activeSelf && isOnGround)
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {               
+                animaPriest.SetTrigger(Attack02ParamPr);          
+            }
         }
 
-        if (isHolding && Input.GetButtonUp("Fire2"))
-        {
-            if (holdTimeAttack02 >= holdAttack02)
-            {
-                Debug.Log("Giữ đủ thời gian -> thực hiện Attack logic!"); 
-                animationHero.SetBool(HoldParam, false);
-                animationHero.SetTrigger(Attack02Param);
-            }
-            else
-            {
-                Debug.Log("ko đủ thời gian -> hủy attack");
-                animationHero.SetBool(HoldParam, false);
+    }
 
+    private void Attack03()
+    {
+        if (priest.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Q)) 
+            {
+                animaPriest.SetTrigger(Attack03ParamPr); 
+            }
+        }
+        
+    }
+
+    private void Priest()
+    {
+        if (priest.activeSelf == false)
+        {
+            Debug.Log("Ko phải Priest");
+            if ( Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                player.SetActive(false);
+                priest.SetActive(true);
             }
             
-            isHolding = false;
-            GetComponent<PlayerController>().canMove = true;
+        }
+        else if (!player.activeSelf && priest.activeSelf)
+        {
+              if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                player.SetActive(true);
+                priest.SetActive(false);
+            }
         }
     }
+
+
 
     private void Dash()
     {
@@ -168,7 +261,7 @@ public class PlayerController : MonoBehaviour
                 dashCounter = dashTime;
                 ShowDashEffect();
                 isDash = true;
-                animationHero.SetTrigger(DashParam);
+                animationPlayer.SetTrigger(DashParam);
             }
         }
         if (dashCounter > 0)
@@ -207,30 +300,33 @@ public class PlayerController : MonoBehaviour
         dashEffectCounter = timeBetweenEachDashEffect;
     }
 
-    private void Animation()
+    private IEnumerator MoveForward(float speed, float duration)
+    {
+        float timer = duration;
+        while (timer > 0)
+        {   
+            timer -= Time.deltaTime;
+            playerRb.linearVelocity = new Vector2(speed * transform.localScale.x, playerRb.linearVelocityY);
+            
+            yield return null;
+        }
+        playerRb.linearVelocity = new Vector2(0f, playerRb.linearVelocityY);
+    }
+
+    private void AnimationPlayer()
     {
         float speeX = Mathf.Abs(playerRb.linearVelocityX);
-        animationHero.SetFloat(speedParam, speeX);
-        animationHero.SetBool(isOnGroundParam, isOnGround);
-        animationHero.SetBool(HoldParam, isHolding);
-
-
+        animationPlayer.SetFloat(speedParam, speeX);
+        animationPlayer.SetBool(isOnGroundParam, isOnGround);
+        animationPlayer.SetBool(HoldParam, isHolding);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void AnimaPriest()
     {
-        
+        float speeX = Mathf.Abs(playerRb.linearVelocityX);
+        animaPriest.SetFloat(speebParamPr, speeX);
+        animaPriest.SetBool(isOnGroundParamPr, isOnGround);
+
     }
-
-
-    //private void TakeDamege()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        currentHealth = currentHealth - 20;
-    //        health.SetHealth(currentHealth);
-    //    }
-    //}    
 }
 
-//-2.607703e-06  -1.190303

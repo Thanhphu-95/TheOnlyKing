@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Teleport
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -53,6 +54,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3264178777
+    locked: 0
+  - name: Enemy
+    uniqueID: 3538442537
     locked: 0
   m_RenderingLayers:
   - Default

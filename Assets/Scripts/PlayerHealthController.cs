@@ -8,10 +8,22 @@ public class PlayerHealthController : MonoBehaviour
     [SerializeField] private float invicibilityTime; // thoi gian bat tu sau khi trung don
     private float invicCouter; // luu va dem thoi gian bat tu.
     [SerializeField] private GameObject PlayerDeadEff;
+    [SerializeField] private Animator Animator;
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject priest;
+
+
+
+    private int HurtParamPr = Animator.StringToHash("HurtPr");
 
     private void Start()
     {
         currentHealth = maxHealth;
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.GamePanel.SetMaxHealth(maxHealth);
+            UIManager.Instance.GamePanel.UpdateHealth(currentHealth);
+        }
     }
     void Update()
     {
@@ -26,6 +38,10 @@ public class PlayerHealthController : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.GamePanel.UpdateHealth(currentHealth);
+        }
     }
 
     public void IncreaseHeal(int Heal)//tang mau toi da
@@ -37,15 +53,26 @@ public class PlayerHealthController : MonoBehaviour
     {
         Debug.Log($"sat thuong = {damageAmount}");
         currentHealth -= damageAmount;
-        if (Input.GetKeyDown(KeyCode.V))
+        if (UIManager.HasInstance)
         {
-            currentHealth = currentHealth -  1;
+            UIManager.Instance.GamePanel.UpdateHealth(currentHealth);
+            if (priest.activeSelf &&!player.activeSelf)
+            {
+                Animator.SetTrigger(HurtParamPr);
+            }
+            
+
         }
+        if (currentHealth <= 0)
+        {
+            Debug.Log("Die");
+            //if ()
+            //{
+                
+            //}
 
-        //if ()
-        //{
-
-        //}
+        }
+  
     }
 
     private void SetMaxHealth()

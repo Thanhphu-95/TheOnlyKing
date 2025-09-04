@@ -138,10 +138,7 @@ public class BurningGhoulController : MonoBehaviour
         }
         Destroy(this.gameObject);
 
-        //if (targetPlayer != null)
-        //{
-
-        //}
+   
 
         float distance = Vector2.Distance(transform.position, targetPlayer.transform.position);
 
@@ -150,7 +147,6 @@ public class BurningGhoulController : MonoBehaviour
             PlayerHealthController damagePlayer = targetPlayer.GetComponent<PlayerHealthController>();
             if (damagePlayer != null)
             {
-                Debug.Log("gay dame");
                 damagePlayer.DamagePlayer(damageAmount);
             }
         }
