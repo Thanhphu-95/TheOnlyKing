@@ -5,7 +5,7 @@ public class DestroyObjectOvertime : MonoBehaviour
     [SerializeField] private float timeToDestroy;
 
     // Update is called once per frame
-    private void Star()
+    private void Start()
     {
         Destroy(gameObject, timeToDestroy);
     }

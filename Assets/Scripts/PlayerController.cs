@@ -14,9 +14,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform groundPoin;
     [SerializeField] private float moveSpeed; // tốc độ di chuyển
     [SerializeField] private float jumpForce;// tôc độ nhảy
+    [SerializeField] private int currentDamage;
     private bool isOnGround;
     private bool isDoubleJump;
     private int damage;
+
     [SerializeField] private Animator animationPlayer;
 
     [SerializeField] private AttackHitbox attackHitBox;
@@ -82,6 +84,7 @@ public class PlayerController : MonoBehaviour
     {
         //playerLayer = gameObject.layer;
         //enemyLayer = LayerMask.NameToLayer("Enemy");
+        
     }
     void Update()
     {
@@ -318,6 +321,7 @@ public class PlayerController : MonoBehaviour
     public void IncreaseDamage(int dmg)
     {
         damage = damage + dmg;
+        currentDamage = damage;
     }
 
     private void AnimationPlayer()
