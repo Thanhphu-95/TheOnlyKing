@@ -1,5 +1,6 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public class SkeletonController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class SkeletonController : MonoBehaviour
     [SerializeField] private float timeWaitAtPoint; //thời gian chờ ở point
     [SerializeField] private Rigidbody2D skeletonRb; //tham chiếu đên skeleton
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject hitBox;
 
     private int detectDistance = 5;
     [SerializeField] public LayerMask raycastMask;
@@ -44,9 +46,6 @@ public class SkeletonController : MonoBehaviour
     {
         waitCounter = timeWaitAtPoint;
         attackCounter = timerCooldowAttack;
-
-
-        
     }
 
 
@@ -136,7 +135,6 @@ public class SkeletonController : MonoBehaviour
                 StopAttack();
             }
         }
-
         if (cooling)
         {
             CoolDown();
@@ -189,6 +187,13 @@ public class SkeletonController : MonoBehaviour
         cooling = false;
         attackMode = false;
         animator.SetBool(AttackParam, false);
+    }
+
+    private IEnumerator EnableHitboxForSeconds(float time)
+    {
+        hitBox.SetActive(true);
+        yield return new WaitForSeconds(time);
+        hitBox.SetActive(false);
     }
 }
 

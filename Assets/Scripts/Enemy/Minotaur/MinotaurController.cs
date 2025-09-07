@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class MinotaurController : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class MinotaurController : MonoBehaviour
     [SerializeField] private Transform rayCast;
     [SerializeField] private float detectDistance = 10f;
     [SerializeField] private LayerMask playerLayer; // Layer của Player
+    [SerializeField] private GameObject hitBox;
 
     [SerializeField] public float attackDistance;
     [SerializeField] public float moveSpeed;
@@ -16,21 +18,21 @@ public class MinotaurController : MonoBehaviour
     [SerializeField] GameObject target;
     [SerializeField] Animator animator;
     private float distance;
-    private bool attackMode;
+    private bool firstattack;
     private bool inRange;
-    private bool cooling;
     private float intTimer;
   
     private void Awake()
     {
-        intTimer = timer;
+        intTimer = 0;
         animator = GetComponentInChildren<Animator>();
         
     }
 
     void Start()
     {
-        
+        hitBox.SetActive(false);
+
     }
 
     void Update()
@@ -47,8 +49,14 @@ public class MinotaurController : MonoBehaviour
         if (hit.collider != null)
         {
             target = hit.collider.gameObject;
+            if (!inRange)
+            {
+                firstattack = true;
+            }
             inRange = true;
+            
         }
+      
 
         // Vẽ ray trong Scene để debug
         Debug.DrawRay(origin, direction * detectDistance, Color.red);
@@ -62,42 +70,39 @@ public class MinotaurController : MonoBehaviour
         {
             EnemyLogic();
         }
-
-        //if (cooling)
-        //{
-        //    Cooldown();
-        //}
-
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-            
-    //        target = collision.gameObject;
-    //        inRange = true;
-    //    }
-    //}
+
 
     private void EnemyLogic()
     {
+        intTimer -= Time.deltaTime;
         distance = Vector2.Distance(transform.position, target.transform.position);
         if (distance > attackDistance)
         {
             Move();
             StopAttack();
         }
-        else if (distance <= attackDistance && cooling == false)
+        else if (distance <= attackDistance)
         {
-            Attack();
+            if (firstattack == true)
+            {
+                Attack();
+                intTimer = timer;
+                firstattack = false;
+            }
+            else if (!firstattack && intTimer <= 0)
+            {
+                
+                Attack();
+                intTimer = timer;
+            }
+            else
+            {
+                StopAttack();
+            }
+            
         }
-
-        //if (cooling)
-        //{
-        //    animator.SetBool("Attack", false);
-        //}
-
     }
 
     private void Move()
@@ -119,34 +124,24 @@ public class MinotaurController : MonoBehaviour
     }
     private void Attack()
     {
-        timer = intTimer;
-        attackMode = true;
-        cooling = true;
-
         animator.SetBool("Walk", false);
         animator.SetBool("Attack", true);
         MinoRb.bodyType = RigidbodyType2D.Static;
+        StartCoroutine(EnableHitboxForSeconds(0.2f));
+
+
+
     }
 
     private void StopAttack()
     {
-        cooling = false;
-        attackMode= false;
         animator.SetBool("Attack", false);
         MinoRb.bodyType = RigidbodyType2D.Dynamic;
     }
-
-
-
-    //private void RaycastDebugger()
-    //{
-    //    if (distance > attackDistance)
-    //    {
-    //        Debug.DrawRay(rayCast.position, Vector2.left * rayCastLenght, Color.red);
-    //    }
-    //    else if( distance < attackDistance)
-    //    {
-    //        Debug.DrawRay(rayCast.position, Vector2.left * rayCastLenght, Color.green);
-    //    }
-    //}
+    private IEnumerator EnableHitboxForSeconds(float time)
+    {
+        hitBox.SetActive(true);
+        yield return new WaitForSeconds(time);
+        hitBox.SetActive(false);
+    }
 }

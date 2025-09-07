@@ -4072,7 +4072,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -4086,7 +4086,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!4 &364363811
 Transform:
   m_ObjectHideFlags: 0
@@ -4096,7 +4096,7 @@ Transform:
   m_GameObject: {fileID: 364363809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 649.76, y: 35.81, z: 0}
+  m_LocalPosition: {x: 649.76, y: 35.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4122,9 +4122,10 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
+  hitBox: {fileID: 787219197}
   attackDistance: 2.5
   moveSpeed: 2
-  timer: 1
+  timer: 0.3
   MinoRb: {fileID: 364363810}
   target: {fileID: 2485757438151427737}
   animator: {fileID: 0}
@@ -4140,7 +4141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942d88b8247ea4d4095bd480b7fc07e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 10
+  maxHealth: 100
   deadEff: {fileID: 0}
   EnemySlider: {fileID: 48207496}
 --- !u!114 &364363814
@@ -8233,7 +8234,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1.1920849e-10, z: 0, w: 1}
-  m_LocalPosition: {x: 103.7, y: 10.4, z: -10}
+  m_LocalPosition: {x: 84.3, y: 3.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20168,7 +20169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942d88b8247ea4d4095bd480b7fc07e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 0
+  maxHealth: 0
   deadEff: {fileID: 0}
   EnemySlider: {fileID: 1257255589}
 --- !u!1 &748410815
@@ -33318,7 +33319,7 @@ Transform:
   m_GameObject: {fileID: 1374252147}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.7, y: 10.4, z: -10}
+  m_LocalPosition: {x: 84.3, y: 3.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -112467,6 +112468,7 @@ GameObject:
   - component: {fileID: 1597994710}
   - component: {fileID: 1597994713}
   - component: {fileID: 1597994716}
+  - component: {fileID: 1597994717}
   m_Layer: 11
   m_Name: skeleton
   m_TagString: Untagged
@@ -112538,7 +112540,7 @@ Transform:
   m_GameObject: {fileID: 1597994706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 633.2, y: 34.88, z: 0}
+  m_LocalPosition: {x: 633.2, y: 34.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -112592,6 +112594,7 @@ MonoBehaviour:
   timeWaitAtPoint: 0
   skeletonRb: {fileID: 1597994714}
   animator: {fileID: 1597994710}
+  hitBox: {fileID: 198347505}
   raycastMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -112623,7 +112626,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!70 &1597994715
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -112673,9 +112676,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942d88b8247ea4d4095bd480b7fc07e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 20
+  maxHealth: 100
   deadEff: {fileID: 0}
   EnemySlider: {fileID: 2640765211475662541}
+--- !u!114 &1597994717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597994706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b39bafd3a733d14e847e2466ecdf0c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 13
+  playerHealth: {fileID: 8530991981506449953}
 --- !u!1 &1608855162
 GameObject:
   m_ObjectHideFlags: 0
@@ -128667,7 +128684,6 @@ GameObject:
   - component: {fileID: 8530991981506449952}
   - component: {fileID: 8530991981506449953}
   - component: {fileID: 8530991981506449954}
-  - component: {fileID: 8530991981506449955}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -133865,7 +133881,7 @@ MonoBehaviour:
   jumpForce: 12
   currentDamage: 0
   animationPlayer: {fileID: 7128776299478442300}
-  attackHitBox: {fileID: 8530991981506449955}
+  attackHitBox: {fileID: 7128776299478442301}
   holdAttack02: 2
   player: {fileID: 6661877270288778874}
   priest: {fileID: 2052229181}
@@ -133911,6 +133927,7 @@ GameObject:
   - component: {fileID: 112589633376019744}
   - component: {fileID: 542445681160408989}
   - component: {fileID: 7128776299478442300}
+  - component: {fileID: 7128776299478442301}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -134073,6 +134090,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7128776299478442301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6661877270288778874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6bc815154aac9d4fb44c8559256a64e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoint: {fileID: 1382152715}
+  attackRange: 0.45
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &7145752812427023855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139087,7 +139121,7 @@ Transform:
   m_GameObject: {fileID: 2485757438151427737}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.7, y: 10.4, z: 0}
+  m_LocalPosition: {x: 84.3, y: 3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -139145,18 +139179,6 @@ MonoBehaviour:
   MaxHealth: 0
   MaxDamage: 0
   Soul: 0
---- !u!114 &8530991981506449955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2485757438151427737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6bc815154aac9d4fb44c8559256a64e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8573111955330304375
 MonoBehaviour:
   m_ObjectHideFlags: 0

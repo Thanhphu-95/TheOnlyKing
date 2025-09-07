@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void Attack01()
+    public void Attack01()
     {
         if (Input.GetButtonDown("Fire1"))
         {
@@ -155,11 +155,13 @@ public class PlayerController : MonoBehaviour
             {
                 animationPlayer.SetTrigger(AttackParam);
                 attackHitBox.SetDamage(10);
+                attackHitBox.DoAttack();
             }
             else if (priest.activeSelf)
             {
                 animaPriest.SetTrigger(AttackParamPr);
                 attackHitBox.SetDamage(15);
+                attackHitBox.DoAttack();
             }
           
         }
