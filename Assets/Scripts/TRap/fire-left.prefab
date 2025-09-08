@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7925457195941571011}
   - component: {fileID: 2368683526734950642}
   m_Layer: 12
-  m_Name: fire-ball_0
+  m_Name: fire-left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -152,7 +152,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -1, y: 0}
   m_Radius: 0.29032257
 --- !u!95 &7925457195941571011
 Animator:
@@ -193,3 +193,4 @@ MonoBehaviour:
   fireRb: {fileID: 5019682784567696235}
   fireEff: {fileID: 3096908641131240369, guid: a601951c581b2f143a758590c731fe32, type: 3}
   damageAmount: 10
+  TimeDestroy: 10

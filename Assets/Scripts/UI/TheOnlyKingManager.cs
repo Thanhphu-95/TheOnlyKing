@@ -19,7 +19,7 @@ public class TheOnlyKingManager : BaseManager<TheOnlyKingManager>
     }
 
     public void StartGame()
-    { 
+    {
         Debug.Log("ko vao duoc");
         Time.timeScale = 1;
         if (UIManager.HasInstance)

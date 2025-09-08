@@ -4,9 +4,9 @@ public class MenuPanel : MonoBehaviour
 {
     public void OnclickStarGame()
     {
-        
-            
-            Debug.Log("ko bấm được");
+
+
+        Debug.Log("ko bấm được");
         if (TheOnlyKingManager.HasInstance)
         {
             Debug.Log("đã bấm");

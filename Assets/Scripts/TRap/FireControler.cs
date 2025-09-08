@@ -9,10 +9,11 @@ public class FireControler : MonoBehaviour
     [SerializeField] private Rigidbody2D fireRb;
     [SerializeField] private GameObject fireEff;
     [SerializeField] private int damageAmount;
+    [SerializeField] private float TimeDestroy;
 
     private void Start()
     {
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, TimeDestroy);
     }
     void Update()
     {

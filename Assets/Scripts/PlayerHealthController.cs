@@ -104,7 +104,7 @@ public class PlayerHealthController : MonoBehaviour
                 Debug.Log("Die");
                 if (TheOnlyKingManager.HasInstance)
                 {
-                    TheOnlyKingManager.Instance.LosseGame();
+                    //TheOnlyKingManager.Instance.LosseGame();
                 }
 
             }
