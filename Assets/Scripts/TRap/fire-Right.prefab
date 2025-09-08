@@ -193,4 +193,4 @@ MonoBehaviour:
   fireRb: {fileID: 5019682784567696235}
   fireEff: {fileID: 3096908641131240369, guid: a601951c581b2f143a758590c731fe32, type: 3}
   damageAmount: 10
-  TimeDestroy: 5
+  TimeDestroy: 10
