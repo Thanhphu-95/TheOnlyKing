@@ -11,9 +11,9 @@ public class Teleporer : MonoBehaviour
     {
         MainMap.gameObject.SetActive(false);
         teleMap.gameObject.SetActive(true);
-
-        return destination;
         Destroy(gameObject);
+        return destination;
+        
     }
 
 

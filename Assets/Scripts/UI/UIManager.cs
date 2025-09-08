@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class UIManager : BaseManager<UIManager>
 {
-    public GamePanel GamePanel;
+    public GamePanel gamePanel;
+    public MenuPanel menuPanel;
+    public LoosePanel loosePanel;
 
 
     protected override void Awake()
@@ -11,9 +13,11 @@ public class UIManager : BaseManager<UIManager>
     }
     void Start()
     {
-       
+        menuPanel.gameObject.SetActive(true);
+        loosePanel.gameObject.SetActive(false);
+        gamePanel.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
+    
 
 }

@@ -1,17 +1,27 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerHealthController : MonoBehaviour
 {
     [SerializeField] private int currentHealth; //mau hien tai
 
     [SerializeField] private int maxHealth; //mau toi da
-    [SerializeField] private float invicibilityTime; // thoi gian bat tu sau khi trung don
+
     private float invicCouter; // luu va dem thoi gian bat tu.
     [SerializeField] private GameObject PlayerDeadEff;
     [SerializeField] private Animator Animator;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject priest;
 
+    [SerializeField]
+    private SpriteRenderer[] playerSprites;
+
+    [Header("nhận sát thương")]
+    [SerializeField]
+    private float invicibilityTime;
+    private float invicCounter;
+    [SerializeField]
+    private float flashTime;
+    private float flashCounter;
 
 
     private int HurtParamPr = Animator.StringToHash("HurtPr");
@@ -21,13 +31,37 @@ public class PlayerHealthController : MonoBehaviour
         currentHealth = maxHealth;
         if (UIManager.HasInstance)
         {
-            UIManager.Instance.GamePanel.SetMaxHealth(maxHealth);
-            UIManager.Instance.GamePanel.UpdateHealth(currentHealth);
+            UIManager.Instance.gamePanel.SetMaxHealth(maxHealth);
+            UIManager.Instance.gamePanel.UpdateHealth(currentHealth);
         }
     }
     void Update()
     {
-        
+        if (invicCounter > 0)
+        {
+            invicCounter -= Time.deltaTime;
+
+            flashCounter -= Time.deltaTime;
+
+            if (flashCounter <= 0)
+            {
+                foreach (SpriteRenderer sprite in playerSprites)
+                {
+                    sprite.enabled = !sprite.enabled;
+                }
+
+                flashCounter = flashTime;
+            }
+
+            if (invicCounter <= 0)
+            {
+                foreach (SpriteRenderer sprite in playerSprites)
+                {
+                    sprite.enabled = true;
+                }
+                flashCounter = 0;
+            }
+        }
     }
 
 
@@ -40,7 +74,7 @@ public class PlayerHealthController : MonoBehaviour
         }
         if (UIManager.HasInstance)
         {
-            UIManager.Instance.GamePanel.UpdateHealth(currentHealth);
+            UIManager.Instance.gamePanel.UpdateHealth(currentHealth);
         }
     }
 
@@ -51,28 +85,34 @@ public class PlayerHealthController : MonoBehaviour
 
     public void DamagePlayer(int damageAmount)// nhan sat thuong
     {
-        Debug.Log($"sat thuong = {damageAmount}");
-        currentHealth -= damageAmount;
-        if (UIManager.HasInstance)
+        if (invicCounter <= 0)
         {
-            UIManager.Instance.GamePanel.UpdateHealth(currentHealth);
-            if (priest.activeSelf &&!player.activeSelf)
+            Debug.Log($"sat thuong = {damageAmount}");
+            currentHealth -= damageAmount;
+            if (UIManager.HasInstance)
             {
-                Animator.SetTrigger(HurtParamPr);
+                UIManager.Instance.gamePanel.UpdateHealth(currentHealth);
+                if (priest.activeSelf && !player.activeSelf)
+                {
+                    Animator.SetTrigger(HurtParamPr);
+                }
+
+
             }
-            
+            if (currentHealth <= 0)
+            {
+                Debug.Log("Die");
+                if (TheOnlyKingManager.HasInstance)
+                {
+                    TheOnlyKingManager.Instance.LosseGame();
+                }
 
+            }
+            else
+            {
+                invicCounter = invicibilityTime;
+            }
         }
-        if (currentHealth <= 0)
-        {
-            Debug.Log("Die");
-            //if ()
-            //{
-                
-            //}
-
-        }
-  
     }
 
     private void SetMaxHealth()
