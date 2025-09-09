@@ -193,4 +193,4 @@ MonoBehaviour:
   player: {fileID: 0}
   moveSpeed: 10
   damageAmount: 10
-  timeTodestroy: 1
+  timeTodestroy: 5

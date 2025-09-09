@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class GhostBossController : MonoBehaviour
 {
@@ -53,7 +54,14 @@ public class GhostBossController : MonoBehaviour
         activeTimeCounter = activeTime;
         shootCounter = ShootTime;
 
-        
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                player = playerObj.transform;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -66,7 +74,7 @@ public class GhostBossController : MonoBehaviour
             
             Debug.Log("Phase 01");
             
-            Attack02();
+            Attack01();
             Phase01 = true;
             Phase02 = false;
         }
@@ -143,19 +151,9 @@ public class GhostBossController : MonoBehaviour
 
         if (attack02Counter <= 0)
         {
-            for (int i = 0; i < bulletCountAttack02; i++ )
-            {
-                GameObject bullet = Instantiate(fireBallEff, shootPoint.position, Quaternion.identity);
-                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-
-                Vector2 dir = (player.position - shootPoint.position).normalized;
-
-                float randomSpeed = Random.Range(10f, 30f);
-                rb.linearVelocity = dir * randomSpeed;
-                rb.gravityScale = 1f;   
-            }
+            StartCoroutine(ShootBulletDelay());
             attack02Counter = timeToAttack02;
-            isAtAttackPoint = false;
+            
         }
 
 
@@ -174,5 +172,25 @@ public class GhostBossController : MonoBehaviour
 
 
     }
+
+    private IEnumerator ShootBulletDelay()
+    {
+            for (int i = 0; i < bulletCountAttack02; i++ )
+            {
+                GameObject bullet = Instantiate(fireBallEff, shootPoint.position, Quaternion.identity);
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
+                Vector2 dir = (player.position - shootPoint.position).normalized;
+
+                float randomSpeed = Random.Range(10f, 100f);
+            float randomGravity = Random.Range(-1f, 10f);
+                rb.linearVelocity = dir * randomSpeed;
+
+                rb.gravityScale = randomGravity;
+
+            yield return new WaitForSeconds(0.3f);
+            }
+    }
+
 
 }

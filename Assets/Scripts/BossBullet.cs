@@ -10,9 +10,13 @@ public class BossBullet : MonoBehaviour
     [SerializeField] private float timeTodestroy;
 
 
+    private void Awake()
+    {
+        player = FindAnyObjectByType<PlayerController>()?.transform;
+    }
     void Start()
     {
-      
+        
         Vector3 direction =(transform.position - player.transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -39,8 +43,9 @@ public class BossBullet : MonoBehaviour
 
         if (impactEffect != null)
         {
-            Instantiate(impactEffect, transform.position, transform.rotation);
-            Destroy(this.gameObject);
+            GameObject eff = Instantiate(impactEffect, transform.position, transform.rotation);
+            Destroy(eff, 0.5f);
         }
+        Destroy(gameObject);
     }
 }
