@@ -194,3 +194,5 @@ MonoBehaviour:
   moveSpeed: 5
   damageAmount: 10
   timeTodestroy: 5
+  enemyPrefab: {fileID: 9108475408685447294, guid: 304aa7a7c9fd93346b9256d430f0c28c, type: 3}
+  spawnEnemy: 0

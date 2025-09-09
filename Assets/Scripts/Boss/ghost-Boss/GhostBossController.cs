@@ -22,6 +22,11 @@ public class GhostBossController : MonoBehaviour
     [SerializeField] private float timeToAttack02;
     private bool isAtAttackPoint = false;
     private float attack02Counter;
+
+    [Header("Attack 03")]
+    [SerializeField] private GameObject enemyPrefab;
+
+
     private float activeTimeCounter; // bộ đếm cho activeTime
     private float disAppearTimeCounter; // bộ đếm cho disAppearTime
     private float inActiveTimeCounter;
@@ -69,20 +74,26 @@ public class GhostBossController : MonoBehaviour
     {
         LookAtPlayer();
         Debug.Log($"mau hien tai{healthController.CurrenHealth}");
-        if (  healthController.CurrenHealth >= (healthController.MaxHealth / 2)) //mau boss tren 50%
+        if (  healthController.CurrenHealth > (healthController.MaxHealth * 0.7f)) //mau boss tren 80%
         {
             
             Debug.Log("Phase 01");
-            
+            MoveBetweenPoints();
             Attack01();
+
             Phase01 = true;
             Phase02 = false;
         }
-        else
-        {
+        else if(healthController.CurrenHealth >= (healthController.MaxHealth * 0.5f) && healthController.CurrenHealth <= (healthController.MaxHealth * 0.7f)) // mau tren 50%
+        {   Attack02();
             Debug.Log("Phase 02");
             Phase01 = false;
             Phase02 = true;
+        }
+        else 
+        {
+            MoveBetweenPoints();
+            Attack01();
         }
 
     }
@@ -135,7 +146,6 @@ public class GhostBossController : MonoBehaviour
 
     private void Attack02()
     {
-       
         if (!isAtAttackPoint) 
         {
             Theboss.position = Vector3.MoveTowards(Theboss.position, attackPoint.position, moveSpeed * Time.deltaTime);
@@ -146,14 +156,29 @@ public class GhostBossController : MonoBehaviour
             }
             return;
         }
-
         attack02Counter -= Time.deltaTime;
 
         if (attack02Counter <= 0)
         {
             StartCoroutine(ShootBulletDelay());
             attack02Counter = timeToAttack02;
-            
+        }
+    }
+
+    private void Attack03()
+    {
+        BossHealthController bossHealth = GetComponent<BossHealthController>();
+        if (bossHealth != null) 
+        {
+            bossHealth.TakeDamage(10);
+        }
+
+        GameObject fire = Instantiate(fireBallEff, shootPoint.position, Quaternion.identity);
+
+        BossBullet bossBullet=fire.GetComponent<BossBullet>();
+        if (bossBullet != null)
+        {
+            bossBullet.spawnEnemy = true;   
         }
 
 
