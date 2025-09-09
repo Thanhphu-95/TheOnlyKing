@@ -23,9 +23,15 @@ public class AttackHitbox : MonoBehaviour
         {
             Debug.Log($"gây damage");
             EnemyHealthController enemyHealth = hitCollider.GetComponentInParent<EnemyHealthController>();
+            BossHealthController ghostBoss = hitCollider.GetComponentInParent<BossHealthController>();
             if (enemyHealth != null)
             {
                 enemyHealth.DamageEnemy(damage);
+            }
+
+            if (ghostBoss != null)
+            {
+                ghostBoss.TakeDamage(damage);
             }
 
         } 

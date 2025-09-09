@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class GamePanel : MonoBehaviour
 {
     [SerializeField] private Slider playerHealthSlider;
+    [SerializeField] private Slider bossHealthSlider;
 
     private int playerMaxHealth;
 
@@ -23,8 +24,12 @@ public class GamePanel : MonoBehaviour
     }
 
 
-    public void ActiveBossHealth(int maxHealth)
+    public void SetBossMaxHealth(int maxHealth)
     {
-
+        bossHealthSlider.maxValue = maxHealth;
+    }
+    public void UpdateBossHealth(int currentHealthValue)
+    {
+        bossHealthSlider.value = currentHealthValue;
     }
 }

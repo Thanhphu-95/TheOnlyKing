@@ -10,6 +10,7 @@ public class FireTrap : MonoBehaviour
     [SerializeField] private float cooldown; // thoi gian hồi giữa các loạt bắn
     private float timer;
     private bool iShooting;
+    [SerializeField]private Direction fireDirection;
 
     private void Start()
     {
@@ -39,9 +40,17 @@ public class FireTrap : MonoBehaviour
     private IEnumerator ShootBurst()
     {
         iShooting = true;
+        float angle = 0f;
+        switch (fireDirection)
+        {
+            case Direction.up: angle = -90f; break;
+            case Direction.down: angle = 90f; break;
+            case Direction.left: angle = 0f; break;
+            case Direction.right: angle = 180f; break;
+        }
         for (int i = 0; i < burstCount; i++) 
         {
-            FireControler fireControler = Instantiate(firePrefab, shootPosition.position, shootPosition.rotation); 
+            FireControler fireControler = Instantiate(firePrefab, shootPosition.position, Quaternion.Euler(0,0,angle)); 
             yield return new WaitForSeconds(burstDelay);
         }
         timer = cooldown;
@@ -49,4 +58,9 @@ public class FireTrap : MonoBehaviour
 
     }
 
+}
+
+public enum Direction
+{
+    up, down, left, right
 }
