@@ -87,32 +87,18 @@ public class GhostBossController : MonoBehaviour
         Debug.Log($"mau hien tai{healthController.CurrenHealth}");
         if (  healthController.CurrenHealth > (healthController.MaxHealth * 0.7f)) //mau boss tren 80%
         {
-            attack03Counter -= Time.deltaTime;
+            
             Debug.Log("Phase 01");
             //MoveBetweenPoints();
             //Attack02();
-            //if (attack03Counter <= 0)
-            //{
-            //    if ( !TakeDamageAttack03)
-            //    {
-            //        Attack03();
-            //        TakeDamageAttack03 = true;
-            //        attack03Counter = timeToAttack03;
-            //    }
-            //}
-            //else
-            //{
-            //    TakeDamageAttack03 = false;
-            //}
-
-
-            //if (attack03Counter > 0)
-            //{
-            //    attack03Counter -= Time.deltaTime;
-            //}
-            //else
+            //if (attack03Counter <= 0f)
             //{
             //    Attack03();
+            //    attack03Counter = timeToAttack03; // reset thời gian chờ giữa mỗi lần tấn công
+            //}
+            //else
+            //{
+            //    attack03Counter -= Time.deltaTime;
             //}
 
             Attack03();
@@ -202,6 +188,7 @@ public class GhostBossController : MonoBehaviour
 
     private void Attack03()
     {
+        bool first = true;
         if (!isAtAttackPoint03)
         {
             Theboss.position = Vector3.MoveTowards(Theboss.position, attackPoint03.position, moveSpeed * Time.deltaTime);
@@ -219,14 +206,24 @@ public class GhostBossController : MonoBehaviour
             return;
         }
 
+        
         BossHealthController bossHealth = GetComponent<BossHealthController>();
-            if (bossHealth != null) 
-            {
+        if (bossHealth != null) 
+        {
             bossHealth.TakeDamage(10);
-            }
-        StartCoroutine(ShootAttack03());
-        isAtAttackPoint03 = false;
-        attack03Counter = timeToAttack03;
+        }
+        if (first == true)
+        {
+            StartCoroutine(ShootAttack03());
+            first = false;
+        }
+        if (attack03Counter <= 0 )
+        {
+            StartCoroutine(ShootAttack03());
+            isAtAttackPoint03 = false;
+            
+        }
+        
     }
 
     private void LookAtPlayer()
@@ -245,6 +242,7 @@ public class GhostBossController : MonoBehaviour
 
     private IEnumerator ShootAttack03()
     {
+        float[] speedOption = { 3, 3, 4, 5, 5, 6, 6, 8 }; 
         for (int i = 0; i < bulletCountAttack03; i++)
         {
             GameObject fire = Instantiate(fireBallEff, shootPoint.position, Quaternion.identity);
@@ -252,11 +250,11 @@ public class GhostBossController : MonoBehaviour
             if (rb != null)
             {
                 float dirX = Mathf.Sign(Theboss.localScale.x);
-                Vector2 shootDir = new Vector2(Random.Range(0.3f, 0.5f) * dirX, 1f).normalized;
-                float shootSpeed = Random.Range(6f, 8f);
+                Vector2 shootDir = new Vector2(Random.Range(0.1f, 0.5f) * dirX, 0.3f).normalized;
+                float shootSpeed = speedOption[Random.Range(0, speedOption.Length)];
                 rb.linearVelocity = shootDir * shootSpeed;
 
-                rb.gravityScale = Random.Range(0.1f, 0.5f);
+                rb.gravityScale = Random.Range(0.1f, 0.3f);
             }
 
 
@@ -265,11 +263,13 @@ public class GhostBossController : MonoBehaviour
             if (bossBullet != null)
             {
                 bossBullet.attack03 = true;
-                bossBullet.spawnEnemy = Random.value < 0.1f;
+                bossBullet.spawnEnemy = Random.value < 0.2f;
                 Debug.Log($"SpawnEnemy cho viên đạn này: {bossBullet.spawnEnemy}");
             }
-            yield return new WaitForSeconds(0.5f);
+            
+            yield return new WaitForSeconds(0.7f);
         }
+        attack03Counter = timeToAttack03;
     }
 
     private IEnumerator ShootAttack02()
