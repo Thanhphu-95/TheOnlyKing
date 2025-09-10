@@ -16,7 +16,7 @@ public class BurningGhoulController : MonoBehaviour
     [SerializeField] private Animator burningAnimator;
 
    
-    [SerializeField] private GameObject targetPlayer;
+    [SerializeField] private Transform targetPlayer;
     [SerializeField] private int damageAmount ;
     [SerializeField] private GameObject burnEff;
     private bool attack = false;
@@ -25,6 +25,10 @@ public class BurningGhoulController : MonoBehaviour
     private PlayerController playerController;
     [SerializeField] private float explosionRadius;//pham vi no
 
+    private void Awake()
+    {
+        targetPlayer = FindAnyObjectByType<PlayerController>()?.transform;
+    }
 
     void Start()
     {
@@ -148,6 +152,14 @@ public class BurningGhoulController : MonoBehaviour
             if (damagePlayer != null)
             {
                 damagePlayer.DamagePlayer(damageAmount);
+            }
+        }
+
+        foreach (Transform pPoint in patroPoints)
+        {
+            if (pPoint != null)
+            {
+                Destroy(pPoint.gameObject);
             }
         }
     }

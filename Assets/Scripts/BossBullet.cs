@@ -10,6 +10,8 @@ public class BossBullet : MonoBehaviour
     [SerializeField] private float timeTodestroy;
     [SerializeField] private GameObject enemyPrefab;
     public bool spawnEnemy = false;
+    public bool attack03 = false;
+
 
 
 
@@ -19,15 +21,23 @@ public class BossBullet : MonoBehaviour
     }
     void Start()
     {
-        Vector3 direction =(transform.position - player.transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if (!attack03)
+        {
+            Vector3 direction =(transform.position - player.transform.position).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+        
+
         Destroy(gameObject, timeTodestroy);
     }
 
     void Update()
     {
-        rb.linearVelocity = -transform.right * moveSpeed;
+        if (!attack03)
+        {
+            rb.linearVelocity = -transform.right * moveSpeed;
+        }
     }
 
 
@@ -44,15 +54,16 @@ public class BossBullet : MonoBehaviour
 
         
 
-        if (collision.gameObject.CompareTag("Ground") && spawnEnemy == true)
+        if (collision.gameObject.CompareTag("Ground") && spawnEnemy == true) //dùng cho attack03
         {
             if (enemyPrefab != null)
             {
                 Vector3 spawnPos = transform.position;
                 
-                spawnPos.y += 0f;
-                
-               Instantiate(enemyPrefab, spawnPos, transform.rotation); 
+                GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+
+                float DirX = Mathf.Sign(rb.linearVelocityX);
+                enemy.transform.localScale = new Vector3(DirX, 1, 1);
             }
         }
         if (impactEffect != null)
