@@ -87,23 +87,10 @@ public class GhostBossController : MonoBehaviour
         Debug.Log($"mau hien tai{healthController.CurrenHealth}");
         if (  healthController.CurrenHealth > (healthController.MaxHealth * 0.7f)) //mau boss tren 80%
         {
+            MoveBetweenPoints();
+            Attack01();
+           
             
-            Debug.Log("Phase 01");
-            //MoveBetweenPoints();
-            //Attack02();
-            //if (attack03Counter <= 0f)
-            //{
-            //    Attack03();
-            //    attack03Counter = timeToAttack03; // reset thời gian chờ giữa mỗi lần tấn công
-            //}
-            //else
-            //{
-            //    attack03Counter -= Time.deltaTime;
-            //}
-
-            Attack03();
-            Phase01 = true;
-            Phase02 = false;
         }
         else if(healthController.CurrenHealth >= (healthController.MaxHealth * 0.5f) && healthController.CurrenHealth <= (healthController.MaxHealth * 0.7f)) // mau tren 50%
         {   /*Attack02();*/
@@ -113,8 +100,8 @@ public class GhostBossController : MonoBehaviour
         }
         else 
         {
-            MoveBetweenPoints();
-            Attack01();
+            //MoveBetweenPoints();
+            //Attack01();
         }
 
     }
