@@ -11,48 +11,56 @@ public class GhostBossController : MonoBehaviour
     [SerializeField] private GameObject fireBallEff;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private GameObject teleAppearEff;
+    [SerializeField] private GameObject teleDisappearEff;
 
     [SerializeField] private float activeTime; // thời gian boss hoạt động trước khi biến mất
     [SerializeField] private float disAppearTime; // thời gian boss biến mất
     [SerializeField] private float inActiveTime;
     [SerializeField] private float ShootTime;
 
+
+
     [Header("Attack 02")]
     [SerializeField] private Transform attackPoint;
     [SerializeField] private int bulletCountAttack02;
-    [SerializeField] private float timeToAttack02;
     private bool isAtAttackPoint02 = false;
-    private float attack02Counter;
-    
 
 
     [Header("Attack 03")]
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Transform attackPoint03;
     [SerializeField] private int bulletCountAttack03;
-    [SerializeField] private float timeToAttack03;
-    private float attack03Counter;
+    private int currentbullet03;
     private bool isAtAttackPoint03 = false;
+    private bool hasShotAttack03 = false;
     private bool TakeDamageAttack03 = false;
-
 
     private float activeTimeCounter; // bộ đếm cho activeTime
     private float disAppearTimeCounter; // bộ đếm cho disAppearTime
     private float inActiveTimeCounter;
     private float shootCounter;
 
-    private bool Phase01;
-    private bool Phase02;
-
-
-    
-    
-
 
     [SerializeField] private Transform[] spawnPoints;
     private Transform targetPoint;
     [SerializeField] private Transform Theboss;
     [SerializeField] private Transform player;
+
+    [Header("SkillCounter")]
+    [SerializeField] private float skill02CountTime;
+    [SerializeField] private float skill03CountTime;
+    
+    private float skill2Counter;
+    private float skill3Counter;
+    private bool enterPhase02 = true;
+    private bool enterPhase03 = true;
+
+
+    private int APPEAR_PARAM = Animator.StringToHash("XuatHien");
+    private int Disappear_PARAM = Animator.StringToHash("BienMat");
+    private int PHASE02_PARAM = Animator.StringToHash("Phase02");
+
 
     private void Awake()
     {
@@ -67,7 +75,11 @@ public class GhostBossController : MonoBehaviour
         healthController = GetComponent<BossHealthController>();
         activeTimeCounter = activeTime;
         shootCounter = ShootTime;
-        attack03Counter = timeToAttack03;
+        skill2Counter = skill02CountTime;
+        skill3Counter = skill03CountTime;
+        currentbullet03 = bulletCountAttack03;
+
+
 
         if (player == null)
         {
@@ -87,26 +99,127 @@ public class GhostBossController : MonoBehaviour
         Debug.Log($"mau hien tai{healthController.CurrenHealth}");
         if (  healthController.CurrenHealth > (healthController.MaxHealth * 0.7f)) //mau boss tren 80%
         {
-            MoveBetweenPoints();
-            Attack01();
-           
-            
+            Phase01();
+         
+
+
         }
         else if(healthController.CurrenHealth >= (healthController.MaxHealth * 0.5f) && healthController.CurrenHealth <= (healthController.MaxHealth * 0.7f)) // mau tren 50%
-        {   /*Attack02();*/
-            Debug.Log("Phase 02");
-            Phase01 = false;
-            Phase02 = true;
+        {
+            bossAnima.SetTrigger(PHASE02_PARAM);
+            Phase02();
+
         }
         else 
         {
-            //MoveBetweenPoints();
-            //Attack01();
+            Phase03();
         }
 
     }
 
-   private void MoveBetweenPoints()
+    private void Phase01()
+    {
+        MoveBetweenPoints();
+        Attack01();
+    }
+
+    private void Phase02()
+    {
+
+        if (enterPhase02)
+        {
+            if (Random.value < 0.5f)
+            {
+                MoveBetweenPoints();
+            }
+            else
+            {
+                TeleBetweemPoints();
+            }
+            Attack02();
+            skill2Counter = skill02CountTime;
+            enterPhase02 = false;
+            return;
+        }
+        MoveBetweenPoints();
+        Attack01();
+
+        skill2Counter -= Time.deltaTime;
+        if (skill2Counter <= 0)
+        {
+            if (Random.value < 0.5f)
+            {
+                MoveBetweenPoints();
+            }
+            else
+            {
+                TeleBetweemPoints();
+            }
+            Attack02();
+            skill2Counter = skill02CountTime;
+            return;
+        }
+    }
+    
+    private void Phase03()
+    {
+        if (enterPhase03)
+        {
+            Debug.Log("vao P3");
+            skill3Counter = skill03CountTime;
+            hasShotAttack03 = false;
+            Attack03();
+
+            enterPhase03 = false;
+            return;
+        }
+
+        skill2Counter -= Time.deltaTime;
+        if (skill2Counter <= 0 && skill3Counter > 0)
+        {
+            if (Random.value < 0.5f)
+            {
+                MoveBetweenPoints();
+            }
+            else
+            {
+                TeleBetweemPoints();
+            }
+            Attack02();
+            skill2Counter = skill02CountTime;
+            
+        }
+        else
+        {
+            MoveBetweenPoints();
+            Attack01();
+        }
+
+        skill3Counter -= Time.deltaTime;
+        if (skill3Counter <= 0 && skill2Counter > 0 )
+        {
+            Attack03();
+            
+            return;
+        }
+
+
+        //if (hasShotAttack03 && skill3Counter > 0 && skill2Counter > 0)
+        //{
+        //    MoveBetweenPoints();
+        //    Attack01();
+        //}
+
+        if (skill3Counter <= -5 && skill2Counter <= -5)
+        {
+            skill3Counter = skill03CountTime;
+            skill2Counter = skill02CountTime;
+        }
+
+
+    }
+
+    private void MoveBetweenPoints()
     {
         if ( targetPoint == null)
         {
@@ -133,6 +246,12 @@ public class GhostBossController : MonoBehaviour
         }
    }
 
+    private void TeleBetweemPoints()
+    {
+        StartCoroutine(TelePoint());
+    }
+    
+
 
     private void Attack01()
     {
@@ -154,63 +273,44 @@ public class GhostBossController : MonoBehaviour
 
     private void Attack02()
     {
-        if (!isAtAttackPoint02) 
-        {
-            Theboss.position = Vector3.MoveTowards(Theboss.position, attackPoint.position, moveSpeed * Time.deltaTime);
-            if (Vector3.Distance(Theboss.position, attackPoint.position) <= 0.1f)
-            {
-                isAtAttackPoint02 = true;
-                attack02Counter = timeToAttack02;
-            }
-            return;
-        }
-        attack02Counter -= Time.deltaTime;
-
-        if (attack02Counter <= 0)
-        {
             StartCoroutine(ShootAttack02());
-            attack02Counter = timeToAttack02;
-        }
     }
 
     private void Attack03()
     {
-        bool first = true;
+        
+
         if (!isAtAttackPoint03)
         {
-            Theboss.position = Vector3.MoveTowards(Theboss.position, attackPoint03.position, moveSpeed * Time.deltaTime);
+            
+            // Boss di chuyển đến chỗ bắn
+            Theboss.position = Vector3.MoveTowards(
+                Theboss.position,
+                attackPoint03.position,
+                moveSpeed * Time.deltaTime
+            );
+            Debug.Log("đang đến point");
 
             if (Vector3.Distance(Theboss.position, attackPoint03.position) <= 0.1f)
-            {
+            {Debug.Log("đã tới point");
+
                 isAtAttackPoint03 = true;
-                attack03Counter = timeToAttack03;
+                
             }
             return;
         }
-        if (attack03Counter > 0)
-        {
-            attack03Counter -= Time.deltaTime;
-            return;
-        }
 
-        
-        BossHealthController bossHealth = GetComponent<BossHealthController>();
-        if (bossHealth != null) 
+
+        if (isAtAttackPoint03 = true && skill3Counter <= 0f && !hasShotAttack03)
         {
-            bossHealth.TakeDamage(10);
-        }
-        if (first == true)
-        {
+            Debug.Log("đủ ĐK");
+            hasShotAttack03 = true;
             StartCoroutine(ShootAttack03());
-            first = false;
-        }
-        if (attack03Counter <= 0 )
-        {
-            StartCoroutine(ShootAttack03());
-            isAtAttackPoint03 = false;
+            Debug.Log("Boss bắt đầu bắn Attack03");
             
         }
-        
+
+
     }
 
     private void LookAtPlayer()
@@ -229,9 +329,11 @@ public class GhostBossController : MonoBehaviour
 
     private IEnumerator ShootAttack03()
     {
+        Debug.Log("vào hàm bắn");
         float[] speedOption = { 3, 3, 4, 5, 5, 6, 6, 8 }; 
         for (int i = 0; i < bulletCountAttack03; i++)
         {
+            Debug.Log("bắn nè");
             GameObject fire = Instantiate(fireBallEff, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = fire.GetComponent<Rigidbody2D>();
             if (rb != null)
@@ -254,14 +356,19 @@ public class GhostBossController : MonoBehaviour
                 Debug.Log($"SpawnEnemy cho viên đạn này: {bossBullet.spawnEnemy}");
             }
             
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.3f);
         }
-        attack03Counter = timeToAttack03;
+        yield return new WaitForSeconds(3f);
+        isAtAttackPoint03 = false;
+        skill3Counter = skill03CountTime;
+        hasShotAttack03 = false;
+        targetPoint = null;
+        
     }
 
     private IEnumerator ShootAttack02()
     {
-        float[] gravityOptions = { 0.1f, 1, 10, 5 };
+        float[] gravityOptions = { 1, 3, 5, 7 };
 
 
             for (int i = 0; i < bulletCountAttack02; i++ )
@@ -282,5 +389,38 @@ public class GhostBossController : MonoBehaviour
             }
     }
 
+    private IEnumerator TelePoint()
+    {
+        if (teleDisappearEff != null)
+        {
+            Theboss.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            GameObject a = Instantiate(teleDisappearEff, Theboss.position, Quaternion.identity);
+            Destroy(a, 1f);
+        }
+        
+
+        yield return new WaitForSeconds(1f);
+       
+        Transform newPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        int breaker = 0;
+        while (newPoint == targetPoint && breaker < 50)
+        {
+            newPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            breaker++;
+        }
+
+        targetPoint = newPoint;
+
+        Theboss.position = targetPoint.position;
+
+        if (teleAppearEff != null)
+        {
+            GameObject b = Instantiate(teleAppearEff, Theboss.position, Quaternion.identity);
+            Destroy(b, 1f);
+        }
+        yield return new WaitForSeconds (0.8f);
+        Theboss.GetComponentInChildren<SpriteRenderer>().enabled = true;
+
+    }
 
 }

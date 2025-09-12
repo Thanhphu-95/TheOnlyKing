@@ -7574,7 +7574,7 @@ Transform:
   m_GameObject: {fileID: 414093922}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.33, y: -0.23, z: 0}
+  m_LocalPosition: {x: -0.66, y: 3.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9244,7 +9244,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -9269,7 +9269,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1.1920849e-10, z: 0, w: 1}
-  m_LocalPosition: {x: 158.00491, y: -5.0941954, z: -10}
+  m_LocalPosition: {x: 158.10925, y: -3.095053, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -36187,7 +36187,7 @@ Transform:
   m_GameObject: {fileID: 1312613928}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.97, y: 0.25, z: 0}
+  m_LocalPosition: {x: 7.68, y: 3.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -36812,7 +36812,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 5
+    OrthographicSize: 7
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -124445,17 +124445,17 @@ MonoBehaviour:
   fireBallEff: {fileID: 6970973590170965377, guid: 82fac982f2720b44e9dd515ce34a5aa1, type: 3}
   shootPoint: {fileID: 1200937917}
   moveSpeed: 2
+  teleAppearEff: {fileID: 1742546887253998437, guid: 288f24c8b769e8a42bcba0e9e3ac55a4, type: 3}
+  teleDisappearEff: {fileID: 9181760502820297326, guid: 194275c52780726488b3cb6fabeba87d, type: 3}
   activeTime: 2
   disAppearTime: 2
   inActiveTime: 2
-  ShootTime: 2
+  ShootTime: 3
   attackPoint: {fileID: 399192147}
   bulletCountAttack02: 5
-  timeToAttack02: 6.55
   enemyPrefab: {fileID: 9108475408685447294, guid: 304aa7a7c9fd93346b9256d430f0c28c, type: 3}
-  attackPoint03: {fileID: 1312613929}
-  bulletCountAttack03: 10
-  timeToAttack03: 10
+  attackPoint03: {fileID: 414093923}
+  bulletCountAttack03: 30
   spawnPoints:
   - {fileID: 243746885}
   - {fileID: 1658256383}
@@ -124468,6 +124468,8 @@ MonoBehaviour:
   - {fileID: 1041045813}
   Theboss: {fileID: 1897916051}
   player: {fileID: 8530991981506449951}
+  skill02CountTime: 2
+  skill03CountTime: 7
 --- !u!114 &1897916049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124480,7 +124482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50673bff11f1f884a844337a3328a8a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2000
+  maxHealth: 50
 --- !u!50 &1897916050
 Rigidbody2D:
   serializedVersion: 5
@@ -132843,7 +132845,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1200937917}

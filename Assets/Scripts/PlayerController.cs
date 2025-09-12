@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask layerToCheck;
     [SerializeField] private Transform groundPoin;
     [SerializeField] private float moveSpeed; // tốc độ di chuyển
+    private float normalMoveSpeed;
     [SerializeField] private float jumpForce;// tôc độ nhảy
     [SerializeField] private int currentDamage;
     private bool isOnGround;
@@ -82,6 +83,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        normalMoveSpeed = moveSpeed;
         //playerLayer = gameObject.layer;
         //enemyLayer = LayerMask.NameToLayer("Enemy");
         
@@ -239,6 +241,7 @@ public class PlayerController : MonoBehaviour
             {
                 player.SetActive(false);
                 priest.SetActive(true);
+                moveSpeed = normalMoveSpeed / 3;
             }
             
         }
@@ -248,6 +251,7 @@ public class PlayerController : MonoBehaviour
             {
                 player.SetActive(true);
                 priest.SetActive(false);
+                moveSpeed = normalMoveSpeed;
             }
         }
     }

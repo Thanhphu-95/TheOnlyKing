@@ -1,19 +1,25 @@
 fileFormatVersion: 2
-guid: a3fee8ec94ca8124dadf18a639d5adb8
+guid: 9925d5c763e515640a8c46d03b085c1d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -322147167890227439
-    second: ghost-1-sheet_0
+      213: -6934970632280896659
+    second: ghost-appears_0
   - first:
-      213: -4819205893623594680
-    second: ghost-1-sheet_1
+      213: 7378510303104686829
+    second: ghost-appears_1
   - first:
-      213: -6781572013645741493
-    second: ghost-1-sheet_2
+      213: -6177243964216246889
+    second: ghost-appears_2
   - first:
-      213: 7321108090774897997
-    second: ghost-1-sheet_3
+      213: -7684952291252272460
+    second: ghost-appears_3
+  - first:
+      213: -1743964570204464838
+    second: ghost-appears_4
+  - first:
+      213: -4683081318535601398
+    second: ghost-appears_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ghost-1-sheet_0
+      name: ghost-appears_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 4
-        width: 29
-        height: 48
+        x: 31
+        y: 8
+        width: 9
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 11f318c8bd0878bf0800000000000000
-      internalID: -322147167890227439
+      spriteID: d6b8127f3f802cf90800000000000000
+      internalID: -6934970632280896659
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ghost-1-sheet_1
+      name: ghost-appears_1
       rect:
         serializedVersion: 2
-        x: 43
+        x: 96
         y: 6
-        width: 27
-        height: 47
+        width: 15
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 841c813e5cdbe1db0800000000000000
-      internalID: -4819205893623594680
+      spriteID: dea5d14170cb56660800000000000000
+      internalID: 7378510303104686829
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ghost-1-sheet_2
+      name: ghost-appears_2
       rect:
         serializedVersion: 2
-        x: 78
-        y: 7
+        x: 150
+        y: 5
         width: 29
-        height: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b424ae31f2403e1a0800000000000000
-      internalID: -6781572013645741493
+      spriteID: 79df6fdc755064aa0800000000000000
+      internalID: -6177243964216246889
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ghost-1-sheet_3
+      name: ghost-appears_3
       rect:
         serializedVersion: 2
-        x: 113
+        x: 210
         y: 6
-        width: 31
-        height: 47
+        width: 35
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,8 +196,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4540e8050dc99560800000000000000
-      internalID: 7321108090774897997
+      spriteID: 4b285149b90995590800000000000000
+      internalID: -7684952291252272460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost-appears_4
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 3
+        width: 37
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a39981c96713cc7e0800000000000000
+      internalID: -1743964570204464838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost-appears_5
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 1
+        width: 26
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a03ea625a5a520fb0800000000000000
+      internalID: -4683081318535601398
       vertices: []
       indices: 
       edges: []
@@ -210,10 +260,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ghost-1-sheet_0: -322147167890227439
-      ghost-1-sheet_1: -4819205893623594680
-      ghost-1-sheet_2: -6781572013645741493
-      ghost-1-sheet_3: 7321108090774897997
+      ghost-appears_0: -6934970632280896659
+      ghost-appears_1: 7378510303104686829
+      ghost-appears_2: -6177243964216246889
+      ghost-appears_3: -7684952291252272460
+      ghost-appears_4: -1743964570204464838
+      ghost-appears_5: -4683081318535601398
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

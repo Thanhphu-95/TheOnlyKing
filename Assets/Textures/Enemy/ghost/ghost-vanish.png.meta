@@ -1,19 +1,28 @@
 fileFormatVersion: 2
-guid: a3fee8ec94ca8124dadf18a639d5adb8
+guid: 7226288532228624e98509a0c1c91b12
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -322147167890227439
-    second: ghost-1-sheet_0
+      213: -1663459301286162585
+    second: ghost-vanish_0
   - first:
-      213: -4819205893623594680
-    second: ghost-1-sheet_1
+      213: 3452071338178816257
+    second: ghost-vanish_1
   - first:
-      213: -6781572013645741493
-    second: ghost-1-sheet_2
+      213: -6159117982315714490
+    second: ghost-vanish_2
   - first:
-      213: 7321108090774897997
-    second: ghost-1-sheet_3
+      213: 1549415279476445921
+    second: ghost-vanish_3
+  - first:
+      213: 3860431286593161498
+    second: ghost-vanish_4
+  - first:
+      213: -2445846010109057700
+    second: ghost-vanish_5
+  - first:
+      213: 3195711470213510980
+    second: ghost-vanish_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,13 +118,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ghost-1-sheet_0
+      name: ghost-vanish_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 4
-        width: 29
-        height: 48
+        x: 19
+        y: 1
+        width: 26
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 11f318c8bd0878bf0800000000000000
-      internalID: -322147167890227439
+      spriteID: 76fc48034943ae8e0800000000000000
+      internalID: -1663459301286162585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ghost-1-sheet_1
+      name: ghost-vanish_1
       rect:
         serializedVersion: 2
-        x: 43
-        y: 6
-        width: 27
-        height: 47
+        x: 80
+        y: 8
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,42 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 841c813e5cdbe1db0800000000000000
-      internalID: -4819205893623594680
+      spriteID: 109a47b979838ef20800000000000000
+      internalID: 3452071338178816257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ghost-1-sheet_2
+      name: ghost-vanish_2
       rect:
         serializedVersion: 2
-        x: 78
-        y: 7
-        width: 29
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b424ae31f2403e1a0800000000000000
-      internalID: -6781572013645741493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ghost-1-sheet_3
-      rect:
-        serializedVersion: 2
-        x: 113
-        y: 6
+        x: 142
+        y: 14
         width: 31
-        height: 47
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,8 +177,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4540e8050dc99560800000000000000
-      internalID: 7321108090774897997
+      spriteID: 648e956d3da668aa0800000000000000
+      internalID: -6159117982315714490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost-vanish_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 19
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e291ceccf0a08510800000000000000
+      internalID: 1549415279476445921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost-vanish_4
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 21
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a19803d3dc1039530800000000000000
+      internalID: 3860431286593161498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost-vanish_5
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 17
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c55a420330c9e0ed0800000000000000
+      internalID: -2445846010109057700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost-vanish_6
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 19
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 447b7ba86a2795c20800000000000000
+      internalID: 3195711470213510980
       vertices: []
       indices: 
       edges: []
@@ -210,10 +285,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ghost-1-sheet_0: -322147167890227439
-      ghost-1-sheet_1: -4819205893623594680
-      ghost-1-sheet_2: -6781572013645741493
-      ghost-1-sheet_3: 7321108090774897997
+      ghost-vanish_0: -1663459301286162585
+      ghost-vanish_1: 3452071338178816257
+      ghost-vanish_2: -6159117982315714490
+      ghost-vanish_3: 1549415279476445921
+      ghost-vanish_4: 3860431286593161498
+      ghost-vanish_5: -2445846010109057700
+      ghost-vanish_6: 3195711470213510980
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
