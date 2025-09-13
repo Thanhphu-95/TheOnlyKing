@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.Playables;
 
 public class MenuPanel : MonoBehaviour
 {
+    [SerializeField] private CutsceneStarter cutsceneStarter;
     public void OnclickStarGame()
     {
         Debug.Log("ko bấm được");
@@ -9,10 +12,9 @@ public class MenuPanel : MonoBehaviour
         {
             Debug.Log("đã bấm");
             TheOnlyKingManager.Instance.StartGame();
+            cutsceneStarter.PlayCutscene();
         }
     }
-
-
     public void OnClickQuitGame()
     {
         if (TheOnlyKingManager.HasInstance)
@@ -20,4 +22,5 @@ public class MenuPanel : MonoBehaviour
             TheOnlyKingManager.Instance.QuitGame();
         }
     }
+
 }
