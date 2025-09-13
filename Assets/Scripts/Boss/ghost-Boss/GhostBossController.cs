@@ -56,6 +56,8 @@ public class GhostBossController : MonoBehaviour
     private bool enterPhase02 = true;
     private bool enterPhase03 = true;
 
+    [SerializeField] private int min;
+    [SerializeField] private int max;
 
     private int APPEAR_PARAM = Animator.StringToHash("XuatHien");
     private int Disappear_PARAM = Animator.StringToHash("BienMat");
@@ -163,59 +165,39 @@ public class GhostBossController : MonoBehaviour
     
     private void Phase03()
     {
-        if (enterPhase03)
-        {
-            Debug.Log("vao P3");
-            skill3Counter = skill03CountTime;
-            hasShotAttack03 = false;
-            Attack03();
-
-            enterPhase03 = false;
-            return;
-        }
-
         skill2Counter -= Time.deltaTime;
-        if (skill2Counter <= 0 && skill3Counter > 0)
+        
+
+        int total = min + max;
+        int ran = Random.Range(0, total);
+
+        if (skill2Counter <= 0)
         {
-            if (Random.value < 0.5f)
-            {
-                MoveBetweenPoints();
+            if (ran < min)
+            {           
+                Attack03();
             }
             else
             {
-                TeleBetweemPoints();
+                if (Random.value < 0.7f)
+                {
+                    MoveBetweenPoints();
+                }
+                else
+                {
+                    TeleBetweemPoints();
+                }
+                Attack02();
+
             }
-            Attack02();
             skill2Counter = skill02CountTime;
-            
         }
         else
         {
             MoveBetweenPoints();
             Attack01();
         }
-
-        skill3Counter -= Time.deltaTime;
-        if (skill3Counter <= 0 && skill2Counter > 0 )
-        {
-            Attack03();
-            
-            return;
-        }
-
-
-        //if (hasShotAttack03 && skill3Counter > 0 && skill2Counter > 0)
-        //{
-        //    MoveBetweenPoints();
-        //    Attack01();
-        //}
-
-        if (skill3Counter <= -5 && skill2Counter <= -5)
-        {
-            skill3Counter = skill03CountTime;
-            skill2Counter = skill02CountTime;
-        }
-
+        
 
     }
 
@@ -278,39 +260,19 @@ public class GhostBossController : MonoBehaviour
 
     private void Attack03()
     {
+        if (!hasShotAttack03)
+        {
+            StartCoroutine(MoveToAttack03());
+        }
         
 
-        if (!isAtAttackPoint03)
-        {
-            
-            // Boss di chuyển đến chỗ bắn
-            Theboss.position = Vector3.MoveTowards(
-                Theboss.position,
-                attackPoint03.position,
-                moveSpeed * Time.deltaTime
-            );
-            Debug.Log("đang đến point");
-
-            if (Vector3.Distance(Theboss.position, attackPoint03.position) <= 0.1f)
-            {Debug.Log("đã tới point");
-
-                isAtAttackPoint03 = true;
-                
-            }
-            return;
-        }
-
-
-        if (isAtAttackPoint03 = true && skill3Counter <= 0f && !hasShotAttack03)
-        {
-            Debug.Log("đủ ĐK");
-            hasShotAttack03 = true;
-            StartCoroutine(ShootAttack03());
-            Debug.Log("Boss bắt đầu bắn Attack03");
-            
-        }
-
-
+        //if (!hasShotAttack03 && isAtAttackPoint03)
+        //{
+        //    Debug.Log("đủ ĐK");
+        //    hasShotAttack03 = true;
+        //    StartCoroutine(ShootAttack03());
+        //    Debug.Log("Boss bắt đầu bắn Attack03");          
+        //}
     }
 
     private void LookAtPlayer()
@@ -327,6 +289,56 @@ public class GhostBossController : MonoBehaviour
 
     }
 
+
+    private IEnumerator MoveToAttack03()
+    {
+        Debug.Log("dang di chuyen");
+        //if (!isAtAttackPoint03)
+        //{
+
+        //    // Boss di chuyển đến chỗ bắn
+        //    Theboss.position = Vector3.MoveTowards(
+        //        Theboss.position,
+        //        attackPoint03.position,
+        //        moveSpeed * Time.deltaTime
+        //    );
+        //    Debug.Log("đang đến point");
+
+        //    if (Vector3.Distance(Theboss.position, attackPoint03.position) <= 0.1f)
+        //    {
+        //        Debug.Log("đã tới point");
+
+        //        isAtAttackPoint03 = true;
+
+        //    }
+        //    yield return new WaitForSeconds(0.5f);
+        //}
+
+
+        Debug.Log("Boss đang di chuyển đến AttackPoint03...");
+
+        while (Vector3.Distance(Theboss.position, attackPoint03.position) > 0.1f)
+        {
+            Theboss.position = Vector3.MoveTowards(
+                Theboss.position,
+                attackPoint03.position,
+                moveSpeed * Time.deltaTime
+            );
+
+            yield return null; // chờ frame tiếp theo, tiếp tục move
+        }
+
+        Debug.Log("Boss đã tới AttackPoint03");
+        isAtAttackPoint03 = true;
+
+        // Khi tới nơi rồi thì mới bắt đầu bắn
+        if (!hasShotAttack03)
+        {
+            hasShotAttack03 = true;
+            StartCoroutine(ShootAttack03());
+            Debug.Log("Boss bắt đầu bắn Attack03");
+        }
+    }
     private IEnumerator ShootAttack03()
     {
         Debug.Log("vào hàm bắn");
@@ -358,11 +370,11 @@ public class GhostBossController : MonoBehaviour
             
             yield return new WaitForSeconds(0.3f);
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(10f);
         isAtAttackPoint03 = false;
-        skill3Counter = skill03CountTime;
+        skill2Counter = skill02CountTime;
         hasShotAttack03 = false;
-        targetPoint = null;
+        
         
     }
 
