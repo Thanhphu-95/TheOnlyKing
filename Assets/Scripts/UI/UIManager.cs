@@ -13,9 +13,9 @@ public class UIManager : BaseManager<UIManager>
     }
     void Start()
     {
-        //menuPanel.gameObject.SetActive(true);
-        //loosePanel.gameObject.SetActive(false);
-        //gamePanel.gameObject.SetActive(false);
+        menuPanel.gameObject.SetActive(true);
+        loosePanel.gameObject.SetActive(false);
+        gamePanel.gameObject.SetActive(false);
     }
 
     

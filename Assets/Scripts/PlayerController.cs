@@ -76,8 +76,6 @@ public class PlayerController : MonoBehaviour
     private int AttackParamPr = Animator.StringToHash("attack01Pr");
     private int Attack02ParamPr = Animator.StringToHash("attack02Pr");
     private int Attack03ParamPr = Animator.StringToHash("attack03Pr");
-    
-
 
 
 
@@ -229,6 +227,7 @@ public class PlayerController : MonoBehaviour
                 animaPriest.SetTrigger(Attack03ParamPr); 
             }
         }
+        
         
     }
 

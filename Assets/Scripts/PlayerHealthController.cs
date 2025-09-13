@@ -12,8 +12,7 @@ public class PlayerHealthController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject priest;
 
-    [SerializeField]
-    private SpriteRenderer[] playerSprites;
+    [SerializeField] private SpriteRenderer[] playerSprites;
 
     [Header("nhận sát thương")]
     [SerializeField]

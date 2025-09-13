@@ -21,6 +21,7 @@ public class ErethonController : MonoBehaviour
     private float teleportTimer;
     [SerializeField] private float moveBehaviorCooldown = 2f; 
     private float moveBehaviorTimer = 0f;
+    private int currentBehavior;
 
 
     [Header("Jump")]
@@ -69,7 +70,6 @@ public class ErethonController : MonoBehaviour
 
         if (distance <= attackDistance)
         {
-            Debug.Log("vao tam danh");
             if (Random.value < 0.5f)
             {
                 Attack02();
@@ -82,33 +82,41 @@ public class ErethonController : MonoBehaviour
         }
         else
         {
-            Run();
-
             float rand = Random.value;
             Debug.Log("follow player");
             if (moveBehaviorTimer <= 0)
             {
 
-                if (rand < 0.05f && teleportTimer <= 0) //5%
+                if (rand < 0.2f && teleportTimer <= 0) //20%
                 {
-                    TeleportBehindPlayer();
+                    currentBehavior = 3;
+
                 }
-                else if (rand < 0.3f && jumpTimer <= 0) //25%%
+                else if (rand < 0.4f && jumpTimer <= 0) //20%%
                 {
-                    JumToPlayer();
+                    currentBehavior = 2;
+                  
                 }
-                else if (rand < 0.5f) //20%
+                else if (rand < 0.6) //20%
                 {
-                    Run();
+                    currentBehavior = 1;
+               
                 }
                 else//50%
                 {
-                    Move();
+                    currentBehavior = 0;
+                 
                 }
                 moveBehaviorTimer = moveBehaviorCooldown;
             }
-    
 
+            switch (currentBehavior)
+            {
+                case 0: Move(); break;
+                case 1: Run(); break;
+                case 2: JumToPlayer(); break;
+                case 3: TeleportBehindPlayer(); currentBehavior = 0; break;
+            }
 
 
         }
@@ -163,7 +171,7 @@ public class ErethonController : MonoBehaviour
         float velocityX = (targetPos.x - startPos.x) / totalTime;
 
         rb.linearVelocity = new Vector2(velocityX, velocityY);
-        animator.SetTrigger("Jump");
+        animator.SetTrigger(JUM_PARAM);
 
         hasJumped = true;
         jumpTimer = jumpCooldown;
