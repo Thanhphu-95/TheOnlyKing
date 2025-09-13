@@ -5,6 +5,7 @@ public class GamePanel : MonoBehaviour
 {
     [SerializeField] private Slider playerHealthSlider;
     [SerializeField] private Slider bossHealthSlider;
+    [SerializeField] private GameObject bossHealth;
 
     private int playerMaxHealth;
 
@@ -31,5 +32,9 @@ public class GamePanel : MonoBehaviour
     public void UpdateBossHealth(int currentHealthValue)
     {
         bossHealthSlider.value = currentHealthValue;
+    }
+    public void ActiveBossHealth(bool status)
+    {
+        bossHealth.SetActive(status);
     }
 }

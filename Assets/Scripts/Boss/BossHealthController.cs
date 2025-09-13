@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BossHealthController : MonoBehaviour
 {
+    [SerializeField] private BossRoom bossRoom;
     private int currenHealth;
 
     public int CurrenHealth => currenHealth;
@@ -30,8 +31,21 @@ public class BossHealthController : MonoBehaviour
         }
 
         if (currenHealth <= 0)
-        {
+        {   Debug.Log("ko thay");
+            //var bossRoom = FindAnyObjectByType<BossRoom>();
+            //if (bossRoom != null)
+            //{
+
+            //    bossRoom.OpenWall();
+            //}
+
+            bossRoom.OpenWall();
+            if (UIManager.HasInstance)
+            {
+                UIManager.Instance.gamePanel.ActiveBossHealth(false);
+            }
             Destroy(this.gameObject);
+
         }
     }
 }

@@ -24,7 +24,7 @@ public class GhostBossController : MonoBehaviour
     [Header("Attack 02")]
     [SerializeField] private Transform attackPoint;
     [SerializeField] private int bulletCountAttack02;
-    private bool isAtAttackPoint02 = false;
+    
 
 
     [Header("Attack 03")]
@@ -32,9 +32,8 @@ public class GhostBossController : MonoBehaviour
     [SerializeField] private Transform attackPoint03;
     [SerializeField] private int bulletCountAttack03;
     private int currentbullet03;
-    private bool isAtAttackPoint03 = false;
     private bool hasShotAttack03 = false;
-    private bool TakeDamageAttack03 = false;
+    
 
     private float activeTimeCounter; // bộ đếm cho activeTime
     private float disAppearTimeCounter; // bộ đếm cho disAppearTime
@@ -52,9 +51,9 @@ public class GhostBossController : MonoBehaviour
     [SerializeField] private float skill03CountTime;
     
     private float skill2Counter;
-    private float skill3Counter;
+
     private bool enterPhase02 = true;
-    private bool enterPhase03 = true;
+  
 
     [SerializeField] private int min;
     [SerializeField] private int max;
@@ -78,7 +77,6 @@ public class GhostBossController : MonoBehaviour
         activeTimeCounter = activeTime;
         shootCounter = ShootTime;
         skill2Counter = skill02CountTime;
-        skill3Counter = skill03CountTime;
         currentbullet03 = bulletCountAttack03;
 
 
@@ -329,7 +327,7 @@ public class GhostBossController : MonoBehaviour
         }
 
         Debug.Log("Boss đã tới AttackPoint03");
-        isAtAttackPoint03 = true;
+       
 
         // Khi tới nơi rồi thì mới bắt đầu bắn
         if (!hasShotAttack03)
@@ -371,7 +369,7 @@ public class GhostBossController : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
         yield return new WaitForSeconds(10f);
-        isAtAttackPoint03 = false;
+        
         skill2Counter = skill02CountTime;
         hasShotAttack03 = false;
         
