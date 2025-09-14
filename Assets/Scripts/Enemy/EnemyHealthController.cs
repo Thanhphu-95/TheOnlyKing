@@ -6,10 +6,12 @@ public class EnemyHealthController : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private GameObject deadEff;
     [SerializeField] private Slider EnemySlider;
-
+    [SerializeField] private Animator animatorMinotaur;
+    private bool isDead = false;
     private int currentHealth;
 
 
+    private int NimoDead = Animator.StringToHash("Dead");
     private void Start()
     {
         currentHealth = maxHealth;
@@ -22,15 +24,13 @@ public class EnemyHealthController : MonoBehaviour
     }
     public void DamageEnemy(int damage)
     {
-        Debug.Log("Nhan damage");
+        if(isDead) return;
+      
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            if (deadEff != null)
-            {
-                Instantiate(deadEff, transform.position, transform.rotation);
-            }
-            Destroy(gameObject);
+            Die();
+            isDead = true;
         }
 
         if (EnemySlider != null)
@@ -39,5 +39,21 @@ public class EnemyHealthController : MonoBehaviour
         }
     }
 
+    private void Die()
+    {
+        
 
+        if (animatorMinotaur != null)
+        {
+            animatorMinotaur.SetTrigger(NimoDead); // chạy animation Die
+        }
+
+        if (deadEff != null)
+        {
+            Instantiate(deadEff, transform.position, transform.rotation);
+        }
+
+        // Hủy object sau khi animation kết thúc (ví dụ 2 giây)
+        Destroy(gameObject);
+    }
 }

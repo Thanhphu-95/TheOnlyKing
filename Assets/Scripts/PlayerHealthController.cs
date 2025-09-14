@@ -1,121 +1,132 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerHealthController : MonoBehaviour
 {
-    [SerializeField] private int currentHealth; //mau hien tai
+    [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private int _currentHealth = 100;
 
-    [SerializeField] private int maxHealth; //mau toi da
+    [Header("Invincibility Settings")]
+    [SerializeField] private float invincibilityTime = 1f;
+    [SerializeField] private float flashTime = 0.1f;
 
-    private float invicCouter; // luu va dem thoi gian bat tu.
-    [SerializeField] private GameObject PlayerDeadEff;
-    [SerializeField] private Animator Animator;
+    [Header("Components")]
+    [SerializeField] private SpriteRenderer[] playerSprites;
+    [SerializeField] private Animator animator;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject priest;
 
-    [SerializeField] private SpriteRenderer[] playerSprites;
+    private float invincibilityCounter = 0f;
+    private float flashCounter = 0f;
 
-    [Header("nhận sát thương")]
-    [SerializeField]
-    private float invicibilityTime;
-    private float invicCounter;
-    [SerializeField]
-    private float flashTime;
-    private float flashCounter;
+    private int hurtParamHash = Animator.StringToHash("HurtPr");
+    private int deadParamHash = Animator.StringToHash("Dead");
 
+    // Property MaxHealth - thay đổi sẽ tự cập nhật UI
+    public int MaxHealth
+    {
+        get => _maxHealth;
+        set
+        {
+            _maxHealth = value;
+            if (_currentHealth > _maxHealth) _currentHealth = _maxHealth; // giữ currentHealth không vượt maxHealth
+            UpdateUI(); // cập nhật Slider và Text
+        }
+    }
 
-    private int HurtParamPr = Animator.StringToHash("HurtPr");
+    // Property CurrentHealth - thay đổi sẽ tự cập nhật UI
+    public int CurrentHealth
+    {
+        get => _currentHealth;
+        set
+        {
+            _currentHealth = Mathf.Clamp(value, 0, _maxHealth); // giới hạn trong [0, maxHealth]
+            UpdateUI(); // cập nhật Slider và Text
+        }
+    }
 
     private void Start()
     {
-        currentHealth = maxHealth;
-        if (UIManager.HasInstance)
-        {
-            UIManager.Instance.gamePanel.SetMaxHealth(maxHealth);
-            UIManager.Instance.gamePanel.UpdateHealth(currentHealth);
-        }
+        UpdateUI(); // khởi tạo UI
     }
-    void Update()
-    {
-        if (invicCounter > 0)
-        {
-            invicCounter -= Time.deltaTime;
 
+    private void Update()
+    {
+        if (invincibilityCounter > 0)
+        {
+            invincibilityCounter -= Time.deltaTime;
             flashCounter -= Time.deltaTime;
 
             if (flashCounter <= 0)
             {
-                foreach (SpriteRenderer sprite in playerSprites)
-                {
+                foreach (var sprite in playerSprites)
                     sprite.enabled = !sprite.enabled;
-                }
-
                 flashCounter = flashTime;
             }
 
-            if (invicCounter <= 0)
+            if (invincibilityCounter <= 0)
             {
-                foreach (SpriteRenderer sprite in playerSprites)
-                {
+                foreach (var sprite in playerSprites)
                     sprite.enabled = true;
-                }
-                flashCounter = 0;
+                flashCounter = 0f;
             }
         }
     }
 
-
-    public void HealPlayer(int healthAmount)//moi mau
+    public void HealPlayer(int amount)
     {
-        currentHealth += healthAmount;
-        if (currentHealth >= maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-        if (UIManager.HasInstance)
-        {
-            UIManager.Instance.gamePanel.UpdateHealth(currentHealth);
-        }
+        CurrentHealth += amount; // Dòng thay đổi: dùng property CurrentHealth để tự cập nhật UI
     }
 
-    public void IncreaseHeal(int Heal)//tang mau toi da
+    public void IncreaseMaxHealth(int amount)
     {
-        maxHealth += Heal;
+        MaxHealth += amount; // Dòng thay đổi: dùng property MaxHealth để tự cập nhật UI
     }
 
-    public void DamagePlayer(int damageAmount)// nhan sat thuong
+    public void DamagePlayer(int damageAmount)
     {
-        if (invicCounter <= 0)
+        if (invincibilityCounter <= 0)
         {
-            Debug.Log($"sat thuong = {damageAmount}");
-            currentHealth -= damageAmount;
-            if (UIManager.HasInstance)
-            {
-                UIManager.Instance.gamePanel.UpdateHealth(currentHealth);
-                if (priest.activeSelf && !player.activeSelf)
-                {
-                    Animator.SetTrigger(HurtParamPr);
-                }
+            CurrentHealth -= damageAmount; // Dòng thay đổi: dùng property CurrentHealth để tự cập nhật UI
 
+            if (priest.activeSelf && !player.activeSelf)
+                animator.SetTrigger(hurtParamHash);
 
-            }
-            if (currentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
-                Debug.Log("Die");
+                animator.SetTrigger(deadParamHash);
                 if (TheOnlyKingManager.HasInstance)
-                {
-                    //TheOnlyKingManager.Instance.LosseGame();
-                }
-
+                    TheOnlyKingManager.Instance.LosseGame();
             }
             else
             {
-                invicCounter = invicibilityTime;
+                invincibilityCounter = invincibilityTime;
             }
         }
     }
 
-    private void SetMaxHealth()
+    public IEnumerator HealOverTime(int totalHeal, float duration)
     {
-        currentHealth = maxHealth;
+        int healed = 0;
+        float interval = 0.1f;
+        int steps = Mathf.CeilToInt(duration / interval);
+        int healPerStep = Mathf.CeilToInt(totalHeal / (float)steps);
+
+        while (healed < totalHeal)
+        {
+            int healAmount = Mathf.Min(healPerStep, totalHeal - healed);
+            HealPlayer(healAmount); // Dòng thay đổi: HealPlayer sẽ tự cập nhật UI
+            healed += healAmount;
+            yield return new WaitForSeconds(interval);
+        }
+    }
+
+    private void UpdateUI()
+    {
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.gamePanel.SetMaxHealth(_maxHealth); // Dòng thay đổi: cập nhật maxHealth UI
+            UIManager.Instance.gamePanel.UpdateHealth(_currentHealth); // Dòng thay đổi: cập nhật currentHealth UI
+        }
     }
 }

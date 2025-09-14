@@ -15,6 +15,7 @@ public class BossRoom : MonoBehaviour
         {
             theBoss.SetActive(true);
             this.gameObject.SetActive(false);
+            AudioManager.Instance.PlayBossBGM();
 
             if (UIManager.HasInstance)
             {

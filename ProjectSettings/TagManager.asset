@@ -50,14 +50,17 @@ TagManager:
   - name: Ground
     uniqueID: 203211109
     locked: 0
-  - name: frontground
-    uniqueID: 440903863
-    locked: 0
   - name: Enemy
     uniqueID: 3538442537
     locked: 0
   - name: Player
     uniqueID: 3264178777
+    locked: 0
+  - name: New Layer 6
+    uniqueID: 3796512539
+    locked: 0
+  - name: frontground
+    uniqueID: 440903863
     locked: 0
   m_RenderingLayers:
   - Default

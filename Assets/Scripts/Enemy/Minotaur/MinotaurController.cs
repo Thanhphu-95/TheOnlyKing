@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class MinotaurController : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class MinotaurController : MonoBehaviour
     [SerializeField] private float detectDistance = 10f;
     [SerializeField] private LayerMask playerLayer; // Layer của Player
     [SerializeField] private GameObject hitBox;
-
+    [SerializeField] private EnemyHealthController enemyHealthController;
     [SerializeField] public float attackDistance;
     [SerializeField] public float moveSpeed;
     [SerializeField] public float timer;
@@ -70,6 +71,8 @@ public class MinotaurController : MonoBehaviour
         {
             EnemyLogic();
         }
+
+        
     }
 
 

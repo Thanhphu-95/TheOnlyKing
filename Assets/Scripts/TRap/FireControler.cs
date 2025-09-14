@@ -10,9 +10,16 @@ public class FireControler : MonoBehaviour
     [SerializeField] private GameObject fireEff;
     [SerializeField] private int damageAmount;
     [SerializeField] private float TimeDestroy;
+    [SerializeField] private AudioClip fireClip;
 
     private void Start()
     {
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.clip = fireClip;
+        audio.spatialBlend = 1f;  // 3D sound
+        audio.minDistance = 1f;
+        audio.maxDistance = 10f;
+        audio.Play();
         Destroy(gameObject, TimeDestroy);
     }
     void Update()

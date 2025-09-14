@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Diagnostics;
 
 
@@ -9,6 +9,7 @@ public class BoxUnlock : MonoBehaviour
     [SerializeField] private GameObject unlockEff;
     [SerializeField] private UnlockBoxMessage unlockBoxMessage;
     [SerializeField] private Animator animator;
+
     PlayerAbilityTracker abilityTracker;
     PlayerHealthController healthController;
     PlayerController damage;
@@ -43,10 +44,31 @@ public class BoxUnlock : MonoBehaviour
             switch(giftBox)
             {
                 case Box.Nodamage: abilityTracker.Nodamage = true; break;
-                case Box.MaxHealth: healthController.IncreaseHeal(20); break;
+                case Box.MaxHealth: healthController.IncreaseMaxHealth(20); break;
                 case Box.MaxDamage: damage.IncreaseDamage(1); break;
                 case Box.Soul: abilityTracker.Soul = true; break;
                 case Box.Priest: abilityTracker.Priest = true; break;
+
+                case Box.Heal30Percent:
+                    if (healthController != null)
+                    {
+                        int healAmount = Mathf.CeilToInt(healthController.MaxHealth * 0.3f);
+                        healthController.HealPlayer(healAmount); // Dòng thay đổi: hồi 30% maxHealth
+                    }
+                    break;
+
+                case Box.HealFull:
+                    if (healthController != null)
+                        healthController.HealPlayer(healthController.MaxHealth); // Dòng thay đổi: hồi full máu
+                    break;
+
+                case Box.HealOverTimer:
+                    if (healthController != null)
+                    {
+                        int totalHeal = Mathf.CeilToInt(healthController.MaxHealth * 0.5f);
+                        healthController.StartCoroutine(healthController.HealOverTime(totalHeal, 5f)); // Dòng thay đổi: hồi 50% trong 5s
+                    }
+                    break;
             }
             animator.SetTrigger("Open");
 
@@ -65,4 +87,7 @@ public enum Box
     MaxHealth,
     MaxDamage,
     Soul,
+    Heal30Percent,
+    HealFull,
+    HealOverTimer
 }

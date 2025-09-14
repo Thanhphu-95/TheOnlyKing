@@ -55,7 +55,7 @@ public class TheOnlyKingManager : BaseManager<TheOnlyKingManager>
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-    Application.Quit()
+    Application.Quit();
 #endif
     }
 
