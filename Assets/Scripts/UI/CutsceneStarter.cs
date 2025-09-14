@@ -1,20 +1,42 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Playables;
 
 public class CutsceneStarter : MonoBehaviour
 {
-    [SerializeField] private PlayableDirector director;
+    [SerializeField] private PlayableDirector directorScene;
+    public UnityEvent onStarted;
+    public UnityEvent onCompleted;
+
+    void Reset()
+    {
+        directorScene = GetComponent<PlayableDirector>();
+    }
 
     public void PlayCutscene()
     {
-        if (director == null) return;
+        if (directorScene == null)
+        {
+            Debug.LogError("[CutsceneStarter] Chưa gán PlayableDirector.");
+            return;
+        }
 
-        director.gameObject.SetActive(true);
+        // Đảm bảo cutscene chạy được
+        if (Time.timeScale == 0f) Time.timeScale = 1f;
 
-        // dùng timeUpdateMode cho tất cả các phiên bản Unity
-        director.timeUpdateMode = DirectorUpdateMode.UnscaledGameTime;
+        // Tránh đăng ký trùng
+        directorScene.stopped -= OnDirectorStopped;
+        directorScene.stopped += OnDirectorStopped;
 
-        director.Play();
+        onStarted?.Invoke();
+        directorScene.Play();
+        Debug.Log("[CutsceneStarter] Play()");
+    }
+
+    private void OnDirectorStopped(PlayableDirector d)
+    {
+        d.stopped -= OnDirectorStopped;
+        onCompleted?.Invoke();
+        Debug.Log("[CutsceneStarter] Stopped");
     }
 }

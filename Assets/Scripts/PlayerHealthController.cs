@@ -15,6 +15,7 @@ public class PlayerHealthController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject priest;
+    CapsuleCollider2D myBodyCollider;
 
     private float invincibilityCounter = 0f;
     private float flashCounter = 0f;
@@ -47,6 +48,7 @@ public class PlayerHealthController : MonoBehaviour
 
     private void Start()
     {
+        myBodyCollider = GetComponent<CapsuleCollider2D>();
         UpdateUI(); // khởi tạo UI
     }
 

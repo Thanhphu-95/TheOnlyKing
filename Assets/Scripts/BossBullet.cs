@@ -69,7 +69,7 @@ public class BossBullet : MonoBehaviour
         if (impactEffect != null)
         {
             GameObject eff = Instantiate(impactEffect, transform.position, transform.rotation);
-            Destroy(eff, 0.5f);
+            Destroy(eff, 1f);
         }
         Destroy(gameObject);
 

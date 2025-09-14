@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AttackHitbox : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class AttackHitbox : MonoBehaviour
         Collider2D[] hitEnemy = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayerMask);
         foreach (Collider2D hitCollider in hitEnemy)
         {
-            Debug.Log($"g�y damage");
+            Debug.Log($"gây damage");
             EnemyHealthController enemyHealth = hitCollider.GetComponentInParent<EnemyHealthController>();
             BossHealthController ghostBoss = hitCollider.GetComponentInParent<BossHealthController>();
             if (enemyHealth != null)

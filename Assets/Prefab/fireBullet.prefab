@@ -189,10 +189,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2659607825946719835}
-  impactEffect: {fileID: 6560874269740895218, guid: 6abe8f1ff56a1c048a07c2315ec7b1d9, type: 3}
+  impactEffect: {fileID: 4585218295226599907, guid: f12b9e4370281db48babd82f7b468d0a, type: 3}
   player: {fileID: 0}
   moveSpeed: 10
   damageAmount: 10
   timeTodestroy: 5
   enemyPrefab: {fileID: 0}
   spawnEnemy: 0
+  attack03: 0
