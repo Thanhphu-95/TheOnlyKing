@@ -1,0 +1,361 @@
+fileFormatVersion: 2
+guid: c9a1b40a99cb15949aaa3a19e271efa0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -35841886590429908
+    second: spr_soul_strip8_0
+  - first:
+      213: 4214096887260429483
+    second: spr_soul_strip8_1
+  - first:
+      213: -9201012476633807228
+    second: spr_soul_strip8_2
+  - first:
+      213: 6036886038361118647
+    second: spr_soul_strip8_3
+  - first:
+      213: -5615926434619588913
+    second: spr_soul_strip8_4
+  - first:
+      213: -403695553809395473
+    second: spr_soul_strip8_5
+  - first:
+      213: -7026304487334841767
+    second: spr_soul_strip8_6
+  - first:
+      213: 5064402454669853996
+    second: spr_soul_strip8_7
+  - first:
+      213: -8524934614726002993
+    second: spr_soul_strip8_8
+  - first:
+      213: -7726780678101437922
+    second: spr_soul_strip8_9
+  - first:
+      213: -8263058532242239345
+    second: spr_soul_strip8_10
+  - first:
+      213: -7974373147370850358
+    second: spr_soul_strip8_11
+  - first:
+      213: 9058691653216223966
+    second: spr_soul_strip8_12
+  - first:
+      213: -8072221638770954328
+    second: spr_soul_strip8_13
+  - first:
+      213: 648081584044337461
+    second: spr_soul_strip8_14
+  - first:
+      213: 2321190680599439509
+    second: spr_soul_strip8_15
+  - first:
+      213: -1667860193263390269
+    second: spr_soul_strip8_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spr_soul_strip8_1
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 1
+        width: 39
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bacbc3eaaca7b7a30800000000000000
+      internalID: 4214096887260429483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_soul_strip8_5
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 1
+        width: 43
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe059cd5809c56af0800000000000000
+      internalID: -403695553809395473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_soul_strip8_7
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 1
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c25863e333f584640800000000000000
+      internalID: 5064402454669853996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_soul_strip8_8
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 0
+        width: 41
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc633db822951b980800000000000000
+      internalID: -8524934614726002993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_soul_strip8_10
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 1
+        width: 42
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f80d0736b08b35d80800000000000000
+      internalID: -8263058532242239345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_soul_strip8_11
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 1
+        width: 42
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac7fb8c5fd5555190800000000000000
+      internalID: -7974373147370850358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_soul_strip8_13
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 1
+        width: 41
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8afe5d02035b9ff80800000000000000
+      internalID: -8072221638770954328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_soul_strip8_16
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 1
+        width: 40
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c1758dadf19ad8e0800000000000000
+      internalID: -1667860193263390269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 36f00ea5b98ebb948908946dfac0a073
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      spr_soul_strip8_0: -35841886590429908
+      spr_soul_strip8_1: 4214096887260429483
+      spr_soul_strip8_10: -8263058532242239345
+      spr_soul_strip8_11: -7974373147370850358
+      spr_soul_strip8_12: 9058691653216223966
+      spr_soul_strip8_13: -8072221638770954328
+      spr_soul_strip8_14: 648081584044337461
+      spr_soul_strip8_15: 2321190680599439509
+      spr_soul_strip8_16: -1667860193263390269
+      spr_soul_strip8_2: -9201012476633807228
+      spr_soul_strip8_3: 6036886038361118647
+      spr_soul_strip8_4: -5615926434619588913
+      spr_soul_strip8_5: -403695553809395473
+      spr_soul_strip8_6: -7026304487334841767
+      spr_soul_strip8_7: 5064402454669853996
+      spr_soul_strip8_8: -8524934614726002993
+      spr_soul_strip8_9: -7726780678101437922
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -52,7 +52,7 @@ public class BoxUnlock : MonoBehaviour
                 case Box.Heal30Percent:
                     if (healthController != null)
                     {
-                        int healAmount = Mathf.CeilToInt(healthController.MaxHealth * 0.3f);
+                        int healAmount = Mathf.CeilToInt(healthController.MaxHealth * 0.2f);
                         healthController.HealPlayer(healAmount); // Dòng thay đổi: hồi 30% maxHealth
                     }
                     break;
@@ -66,7 +66,7 @@ public class BoxUnlock : MonoBehaviour
                     if (healthController != null)
                     {
                         int totalHeal = Mathf.CeilToInt(healthController.MaxHealth * 0.5f);
-                        healthController.StartCoroutine(healthController.HealOverTime(totalHeal, 5f)); // Dòng thay đổi: hồi 50% trong 5s
+                        healthController.StartCoroutine(healthController.HealOverTime(totalHeal, 10f)); // Dòng thay đổi: hồi 50% trong 8s
                     }
                     break;
             }

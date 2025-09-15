@@ -1,5 +1,6 @@
-using UnityEngine;
-
+﻿using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 public class BossHealthController : MonoBehaviour
 {
     [SerializeField] private BossRoom bossRoom;
@@ -9,6 +10,12 @@ public class BossHealthController : MonoBehaviour
     [SerializeField] private int maxHealth;
     public int MaxHealth => maxHealth;
 
+
+    [Header("End Scene Settings")]
+    [SerializeField] private PlayableDirector endSceneDirector; // gắn endscene Timeline ở Inspector
+    [SerializeField] private bool loadSceneAfterCutscene = false;
+    [SerializeField] private string nextSceneName; // nếu muốn load scene sau cutscene
+
     void Start()
     {
         currenHealth = maxHealth;
@@ -17,6 +24,11 @@ public class BossHealthController : MonoBehaviour
         {
             UIManager.Instance.gamePanel.SetBossMaxHealth(maxHealth);
             UIManager.Instance.gamePanel.UpdateBossHealth(currenHealth);
+        }
+
+        if (endSceneDirector != null)
+        {
+            endSceneDirector.stopped += OnCutsceneStopped;
         }
     }
 
@@ -40,12 +52,42 @@ public class BossHealthController : MonoBehaviour
             //}
 
             bossRoom.OpenWall();
+            
             if (UIManager.HasInstance)
             {
                 UIManager.Instance.gamePanel.ActiveBossHealth(false);
             }
             Destroy(this.gameObject);
 
+            
+            if (endSceneDirector != null)
+            {
+                
+                endSceneDirector.Play();
+
+                if (loadSceneAfterCutscene)
+                {
+                    endSceneDirector.Play();
+                }
+            }
+            else
+            {
+                Debug.Log("ko vao endscend");
+            }
+
+
         }
     }
+
+    private void OnCutsceneStopped(PlayableDirector director)
+    {
+        if (loadSceneAfterCutscene && !string.IsNullOrEmpty(nextSceneName))
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
+
+        // Sau khi cutscene xong mới destroy boss
+        Destroy(this.gameObject);
+    }
+
 }
