@@ -13,10 +13,10 @@ public class UIManager : BaseManager<UIManager>
     }
     void Start()
     {
-        //menuPanel.gameObject.SetActive(true);
-        //Time.timeScale = 0f;
-        //loosePanel.gameObject.SetActive(false);
-        //gamePanel.gameObject.SetActive(false);
+        menuPanel.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+        loosePanel.gameObject.SetActive(false);
+        gamePanel.gameObject.SetActive(false);
     }
 
     

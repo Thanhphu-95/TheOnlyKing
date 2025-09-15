@@ -2752,7 +2752,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 6.7015214, y: 4.439275, z: 1}
+        value: {x: 50, y: 10, z: 1}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -3250,7 +3250,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 6.7015214
+        value: 50
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -3289,7 +3289,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 4.439275
+        value: 10
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -3387,10 +3387,10 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 0
+    m_Start: 2.6166666666666667
     m_ClipIn: 0
     m_Asset: {fileID: -2913221359844610802}
-    m_Duration: 5.666666666666667
+    m_Duration: 3.0500000000000016
     m_TimeScale: 1
     m_ParentTrack: {fileID: 2772603442585643807}
     m_EaseInDuration: 0
